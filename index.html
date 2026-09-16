@@ -147,10 +147,11 @@
         <a href="#features" class="hover:text-blue-600 transition-colors">Features</a>
         <a href="#mv-switch" class="hover:text-blue-600 transition-colors">Audio/MV Switch</a>
         <a href="#equalizer" class="hover:text-blue-600 transition-colors">Equalizer</a>
+        <a href="#about" class="hover:text-blue-600 transition-colors">About</a>
         <a href="#faq" class="hover:text-blue-600 transition-colors">FAQ</a>
       </nav>
 
-      <!-- Action Buttons -->
+      <!-- Action Buttons & 3-Lines Menu Trigger -->
       <div class="flex items-center gap-3">
         <a 
           href="#download"
@@ -166,7 +167,26 @@
           <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
           <span>Download APK</span>
         </a>
+
+        <!-- 3-Lines Menu Button (Right Corner) -->
+        <button id="menu-toggle" aria-label="Open Navigation Menu" class="p-2.5 rounded-2xl bg-white/80 hover:bg-white border border-slate-200/80 text-slate-700 transition shadow-sm active:scale-95">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
       </div>
+    </div>
+
+    <!-- Dropdown Menu Options (Triggered by 3-Lines Button) -->
+    <div id="mobile-menu" class="hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4 pt-2 border-t border-slate-200/60 bg-white/95 backdrop-blur-xl">
+      <nav class="flex flex-col gap-3 font-semibold text-sm text-slate-700">
+        <a href="#features" class="p-2.5 rounded-xl hover:bg-slate-100/80 transition" onclick="toggleMenu()">Features</a>
+        <a href="#mv-switch" class="p-2.5 rounded-xl hover:bg-slate-100/80 transition" onclick="toggleMenu()">Audio/MV Switch</a>
+        <a href="#equalizer" class="p-2.5 rounded-xl hover:bg-slate-100/80 transition" onclick="toggleMenu()">Equalizer</a>
+        <a href="#about" class="p-2.5 rounded-xl bg-blue-50 text-blue-600 font-bold transition" onclick="toggleMenu()">About Lerza Player</a>
+        <a href="#specs" class="p-2.5 rounded-xl hover:bg-slate-100/80 transition" onclick="toggleMenu()">System Info</a>
+        <a href="#faq" class="p-2.5 rounded-xl hover:bg-slate-100/80 transition" onclick="toggleMenu()">FAQ</a>
+      </nav>
     </div>
   </header>
 
@@ -181,7 +201,7 @@
           <!-- Badge -->
           <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-600 text-xs font-bold tracking-wide shadow-sm">
             <span class="w-2 h-2 rounded-full bg-blue-600 animate-ping"></span>
-            <span>Version 1.0.1 Stable • 100% Offline & Free</span>
+            <span>Version 1.0.0 Stable • 100% Offline & Free</span>
           </div>
 
           <!-- Main Heading -->
@@ -439,6 +459,86 @@
     </div>
   </section>
 
+  <!-- Detailed About Section (Newly Added) -->
+  <section id="about" style="scroll-margin-top: 100px;" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 space-y-3">
+        <h2 class="text-xs font-black uppercase tracking-widest text-blue-600">About Lerza Player</h2>
+        <h3 class="text-3xl sm:text-4xl font-black font-display text-slate-900">
+          Crafted for Extraordinary Sound & Visual Experience
+        </h3>
+        <p class="text-slate-600 text-sm sm:text-base">
+          Lerza Player is an advanced offline media hub engineered to bridge the gap between rich audio customization and sleek, modern aesthetic UI design.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        
+        <!-- App Overview Card -->
+        <div class="p-8 rounded-3xl liquid-card space-y-4 border-l-4 border-l-blue-600">
+          <div class="w-12 h-12 rounded-2xl bg-blue-600/10 text-blue-600 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+          </div>
+          <h4 class="text-xl font-black text-slate-900">Application Vision</h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+            Designed as a high-performance alternative to standard system players, Lerza Player brings professional studio sound tuning directly to your mobile device. With zero internet dependency, your privacy and media files remain entirely secure in local storage.
+          </p>
+        </div>
+
+        <!-- Core Feature Breakdown Card -->
+        <div class="p-8 rounded-3xl liquid-card space-y-4 border-l-4 border-l-indigo-600">
+          <div class="w-12 h-12 rounded-2xl bg-indigo-600/10 text-indigo-600 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L5.59 15.11a2 2 0 01-1.332-1.332l-.477-2.387a6 6 0 01.517-3.86l.158-.318a6 6 0 00.517-3.86L4.49 5.59A2 2 0 015.82 4.258l2.387-.477a6 6 0 013.86.517l.318.158a6 6 0 003.86.517l2.387-.477a2 2 0 011.332 1.332l.477 2.387a6 6 0 01-.517 3.86l-.158.318a6 6 0 00-.517 3.86l.477 2.387a2 2 0 01-1.332 1.332z"/></svg>
+          </div>
+          <h4 class="text-xl font-black text-slate-900">Key Architectural Features</h4>
+          <ul class="text-xs sm:text-sm text-slate-600 space-y-2.5">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-600"></span>
+              <strong>300% Volume Boost:</strong> Crystal clear hardware-level volume expansion.
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-cyan-600"></span>
+              <strong>Audio ↔ MV Switcher:</strong> Instant video-to-background-audio mode toggle.
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-600"></span>
+              <strong>Wallpaper Transparency:</strong> Customizable transparent background UI themes.
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
+              <strong>Smart Voice Filter:</strong> Automatic cleanup of junk WhatsApp voice files.
+            </li>
+          </ul>
+        </div>
+
+        <!-- Developer & Build Details Card -->
+        <div class="p-8 rounded-3xl liquid-card space-y-4 border-l-4 border-l-cyan-600">
+          <div class="w-12 h-12 rounded-2xl bg-cyan-600/10 text-cyan-600 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+          </div>
+          <h4 class="text-xl font-black text-slate-900">Developer & Credits</h4>
+          <div class="text-xs sm:text-sm text-slate-600 space-y-3">
+            <p>
+              Lerza Player Pro is proudly developed and maintained by <strong class="text-slate-900 font-bold">Faraz Munawar</strong>.
+            </p>
+            <div class="p-3 rounded-2xl bg-white/80 border border-slate-200/60 space-y-1">
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-500">Current Release:</span>
+                <span class="font-bold text-blue-600">v1.0.0 Stable</span>
+              </div>
+              <div class="flex justify-between text-xs">
+                <span class="text-slate-500">Platform:</span>
+                <span class="font-bold text-slate-800">Android & Web Engine</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <!-- About System & Technical Specifications Section -->
   <section id="specs" class="py-16 relative">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -527,6 +627,7 @@
       <div class="flex items-center gap-6 font-semibold">
         <a href="#download" class="hover:text-blue-600 transition">Download APK (v1.0.0)</a>
         <a href="/update-check.json" target="_blank" class="hover:text-blue-600 transition">Update API</a>
+        <a href="#about" class="hover:text-blue-600 transition">About</a>
         <a href="#features" class="hover:text-blue-600 transition">Features</a>
         <a href="#specs" class="hover:text-blue-600 transition">System Info</a>
       </div>
@@ -548,6 +649,18 @@
     </script>
     <script src="https://www.highrevenueformat.com/c73de2aa8a798c29691e80a5bc5fd6b1/invoke.js"></script>
   </div>
+
+  <!-- JavaScript for 3-Lines Navigation Menu Toggle -->
+  <script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    function toggleMenu() {
+      mobileMenu.classList.toggle('hidden');
+    }
+
+    menuToggle.addEventListener('click', toggleMenu);
+  </script>
 
 </body>
 </html>
