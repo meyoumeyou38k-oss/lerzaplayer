@@ -2,17 +2,17 @@
   "latestVersion": "1.0.2",
   "versionCode": 102,
   "minSupportedVersionCode": 100,
-  "releaseDate": "2026-09-12",
-  "title": "FZ Player New Update Available! (نیا اپڈیٹ دستیاب ہے)",
-  "titleUrdu": "نیا اپڈیٹ دستیاب ہے! (v1.0.1)",
+  "releaseDate": "2026-09-16",
+  "title": "Lerza Player New Update Available!",
+  "titleUrdu": "نیا اپڈیٹ دستیاب ہے!",
   "releaseNotes": [
     "بہتر ساؤنڈ اور 300% والیم بوسٹر (Louder Audio Engine)",
     "ویڈیو اور آڈیو (MV Switcher) کی کارکردگی میں زبردست اضافہ",
     "فائل اسکیننگ کی تیز رفتار اور بیٹری کی زبردست بچت",
     "انٹرفیس اور تھیمز کی مکمل خوبصورتی اور درستگی"
   ],
-  "downloadUrl": "https://fzplayer.vercel.app",
-  "apkDirectUrl": "https://fzplayer.vercel.app/fzplayer-latest.apk",
+  "downloadUrl": "https://lerzaplayer.vercel.app",
+  "apkDirectUrl": "https://lerzaplayer.vercel.app/lerza-player-latest.apk",
   "isMandatory": false,
   "fileSize": "14.2 MB"
 }
