@@ -1,7 +1,7 @@
 {
-  "latestVersion": "1.0.0",
-  "versionCode": 100,
-  "minSupportedVersionCode": 100,
+  "latestVersion": "1.0.1",
+  "versionCode": 101,
+  "minSupportedVersionCode": 101,
   "releaseDate": "2026-09-16",
   "title": "Lerza Player New Update Available!",
   "titleUrdu": "نیا اپڈیٹ دستیاب ہے!",
@@ -12,7 +12,7 @@
     "انٹرفیس اور تھیمز کی مکمل خوبصورتی اور درستگی"
   ],
   "downloadUrl": "https://lerzaplayer.vercel.app",
-  "apkDirectUrl": "https://lerzaplayer.vercel.app/lerza-player-latest.apk",
+  "apkDirectUrl": "https://lerzaplayer.vercel.app",
   "isMandatory": false,
   "fileSize": "14.2 MB"
 }
