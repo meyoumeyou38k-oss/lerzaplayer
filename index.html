@@ -3,125 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title id="page-title">Lerza Player Pro - Liquid Glass Android Media Engine</title>
-  <meta name="description" content="Official liquid glass website and OTA in-app update management system for Lerza Player Pro music and video player. Developed by Faraz Munawar.">
+  <title id="page-title">Lerza Player Pro - White Liquid Glass Media Engine</title>
+  <meta name="description" content="Official White Liquid Glass website for Lerza Player Pro music & video player with 10-Band Equalizer, Private Vault, and OTA in-app background updater. Developed by Faraz Munawar.">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="icon" type="image/png" href="app-icon.png">
   
-  <!-- Tailwind CSS & Fonts -->
+  <!-- Tailwind CSS & Google Fonts -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      background-color: #090414;
-      color: #f3e8ff;
+      background: radial-gradient(130% 120% at 50% 0%, #ffffff 0%, #f6f8fc 45%, #edf2f9 100%);
+      color: #0f172a;
       overflow-x: hidden;
+      min-height: 100vh;
     }
     .font-mono {
       font-family: 'JetBrains Mono', monospace;
     }
-    .liquid-glass {
-      background: rgba(255, 255, 255, 0.05);
-      backdrop-filter: blur(28px) saturate(190%);
-      -webkit-backdrop-filter: blur(28px) saturate(190%);
-      border: 1px solid rgba(216, 180, 254, 0.2);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    /* White Liquid Glass Styling */
+    .liquid-glass-white {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(28px) saturate(200%);
+      -webkit-backdrop-filter: blur(28px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      box-shadow: 0 20px 45px -12px rgba(15, 23, 42, 0.08), 
+                  0 4px 16px -2px rgba(99, 102, 241, 0.05),
+                  inset 0 1px 1px 0 rgba(255, 255, 255, 0.95);
     }
-    .liquid-glass-card {
-      background: rgba(24, 12, 44, 0.55);
-      backdrop-filter: blur(24px) saturate(180%);
-      -webkit-backdrop-filter: blur(24px) saturate(180%);
-      border: 1px solid rgba(216, 180, 254, 0.16);
-      box-shadow: 0 16px 40px -10px rgba(107, 33, 168, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    .liquid-card {
+      background: rgba(255, 255, 255, 0.65);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 16px 36px -10px rgba(15, 23, 42, 0.06), 
+                  0 2px 8px -1px rgba(16, 185, 129, 0.04),
+                  inset 0 1px 0 0 rgba(255, 255, 255, 0.9);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    .liquid-glass-card:hover {
-      border-color: rgba(233, 213, 255, 0.45);
-      box-shadow: 0 20px 50px -10px rgba(168, 85, 247, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
-      transform: translateY(-2px);
+    .liquid-card:hover {
+      background: rgba(255, 255, 255, 0.9);
+      border-color: rgba(16, 185, 129, 0.35);
+      transform: translateY(-4px);
+      box-shadow: 0 24px 50px -12px rgba(16, 185, 129, 0.16), 
+                  inset 0 1px 2px 0 rgba(255, 255, 255, 1);
     }
-    .glow-purple {
-      box-shadow: 0 0 45px -5px rgba(168, 85, 247, 0.5);
+    .phone-glass-shell {
+      background: #0f172a;
+      box-shadow: 0 35px 80px -15px rgba(15, 23, 42, 0.3),
+                  0 0 0 1px rgba(255, 255, 255, 0.8),
+                  0 0 50px -5px rgba(16, 185, 129, 0.25);
     }
-    .text-gradient-purple-white {
-      background: linear-gradient(135deg, #ffffff 15%, #f3e8ff 55%, #c084fc 100%);
+    .text-gradient-emerald-slate {
+      background: linear-gradient(135deg, #047857 0%, #10b981 50%, #0284c7 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+    /* Liquid Glow Orbs */
+    .glow-sphere {
+      position: absolute;
+      border-radius: 9999px;
+      filter: blur(120px);
+      pointer-events: none;
+      opacity: 0.65;
+      animation: floatSlow 18s ease-in-out infinite alternate;
+    }
+    @keyframes floatSlow {
+      0% { transform: translate(0px, 0px) scale(1); }
+      100% { transform: translate(40px, 30px) scale(1.08); }
+    }
+    /* Custom Modern Scrollbar */
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
     }
     ::-webkit-scrollbar-track {
-      background: #090414;
+      background: #f1f5f9;
     }
     ::-webkit-scrollbar-thumb {
-      background: rgba(168, 85, 247, 0.35);
+      background: #cbd5e1;
       border-radius: 9999px;
     }
     ::-webkit-scrollbar-thumb:hover {
-      background: rgba(192, 132, 252, 0.7);
+      background: #10b981;
     }
   </style>
 </head>
-<body class="selection:bg-purple-500/30 selection:text-white">
+<body class="selection:bg-emerald-500 selection:text-white relative">
 
-  <!-- Ambient Glowing Background Spheres in Liquid Purple & Crystal White -->
+  <!-- Ambient Liquid Glowing Spheres in White/Emerald/Cyan -->
   <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-    <div class="absolute -top-40 left-1/4 w-[650px] h-[650px] bg-purple-600/20 rounded-full blur-[150px]"></div>
-    <div class="absolute top-1/3 -right-40 w-[650px] h-[650px] bg-fuchsia-600/15 rounded-full blur-[160px]"></div>
-    <div class="absolute -bottom-40 left-1/3 w-[650px] h-[650px] bg-indigo-700/20 rounded-full blur-[150px]"></div>
+    <div class="glow-sphere -top-32 left-1/4 w-[550px] h-[550px] bg-emerald-200/50"></div>
+    <div class="glow-sphere top-1/3 -right-32 w-[600px] h-[600px] bg-teal-200/40" style="animation-delay: -5s;"></div>
+    <div class="glow-sphere -bottom-40 left-10 w-[600px] h-[600px] bg-sky-200/45" style="animation-delay: -9s;"></div>
   </div>
 
   <div class="relative z-10 flex flex-col min-h-screen">
     
-    <!-- Navbar -->
-    <header class="sticky top-0 z-50 w-full backdrop-blur-2xl bg-[#0d071e]/75 border-b border-purple-500/20">
+    <!-- Navbar (Frosted White Liquid Glass) -->
+    <header class="sticky top-0 z-50 w-full backdrop-blur-2xl bg-white/70 border-b border-slate-200/60 shadow-sm">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex items-center justify-between h-20">
           
-          <!-- Auto-Detected Brand Logo -->
-          <a href="#" class="flex items-center gap-3 group">
+          <!-- Logo & Branding -->
+          <a href="#" class="flex items-center gap-3.5 group">
             <div class="relative">
-              <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-500 via-fuchsia-500 to-white p-[2px] shadow-lg shadow-purple-500/35">
-                <div class="w-full h-full bg-[#130b2b] rounded-[14px] flex items-center justify-center overflow-hidden p-1">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-emerald-500 via-teal-400 to-sky-400 p-[2px] shadow-lg shadow-emerald-500/25 group-hover:scale-105 transition-all">
+                <div class="w-full h-full bg-white rounded-[14px] flex items-center justify-center overflow-hidden p-1.5 shadow-inner">
                   <img id="nav-logo" src="logo-transparent.png" alt="Logo" class="w-full h-full object-contain">
                 </div>
               </div>
               <span class="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-fuchsia-500 border border-[#0d071e]"></span>
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-emerald-500 border-2 border-white"></span>
               </span>
             </div>
 
             <div>
               <div class="flex items-center gap-2">
-                <span id="app-brand-name" class="font-extrabold text-xl tracking-tight text-white uppercase">LERZA PLAYER</span>
-                <span class="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white">PRO</span>
+                <span id="app-brand-name" class="font-black text-xl tracking-tight text-slate-900">LERZA PLAYER</span>
+                <span class="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-emerald-600 text-white shadow-sm">PRO</span>
               </div>
-              <p class="text-[11px] text-purple-300/80 font-medium">Liquid Glass Media Engine</p>
+              <p class="text-[11px] text-slate-500 font-medium">White Liquid Glass Media Engine</p>
             </div>
           </a>
 
           <!-- Nav Links -->
-          <nav class="hidden md:flex items-center gap-1 p-1 rounded-2xl liquid-glass border border-purple-400/20 text-xs font-semibold">
-            <a href="#overview" class="px-4 py-2 rounded-xl text-white bg-purple-600/30 border border-purple-400/40">Overview</a>
-            <a href="#simulator" class="px-4 py-2 rounded-xl text-purple-200/80 hover:text-white hover:bg-white/5 transition">Simulator</a>
-            <a href="#equalizer" class="px-4 py-2 rounded-xl text-purple-200/80 hover:text-white hover:bg-white/5 transition">Equalizer</a>
-            <a href="#vault" class="px-4 py-2 rounded-xl text-purple-200/80 hover:text-white hover:bg-white/5 transition">Vault</a>
-            <a href="#themes" class="px-4 py-2 rounded-xl text-purple-200/80 hover:text-white hover:bg-white/5 transition">Themes</a>
-            <a href="#developer" class="px-4 py-2 rounded-xl text-purple-200/80 hover:text-white hover:bg-white/5 transition">Developer</a>
+          <nav class="hidden md:flex items-center gap-1.5 p-1.5 rounded-2xl liquid-glass-white text-xs font-bold text-slate-600">
+            <a href="#overview" class="px-3.5 py-2 rounded-xl text-emerald-700 bg-emerald-50 border border-emerald-200/80 shadow-xs">Overview</a>
+            <a href="#simulator" class="px-3.5 py-2 rounded-xl hover:text-emerald-600 hover:bg-white/80 transition">Live Simulator</a>
+            <a href="#equalizer" class="px-3.5 py-2 rounded-xl hover:text-emerald-600 hover:bg-white/80 transition">10-Band EQ</a>
+            <a href="#vault" class="px-3.5 py-2 rounded-xl hover:text-emerald-600 hover:bg-white/80 transition">Vault</a>
+            <a href="#themes" class="px-3.5 py-2 rounded-xl hover:text-emerald-600 hover:bg-white/80 transition">Themes & Opacity</a>
+            <a href="#sound-effects" class="px-3.5 py-2 rounded-xl hover:text-emerald-600 hover:bg-white/80 transition">Sound Engine</a>
           </nav>
 
-          <!-- Primary CTA Button -->
-          <button onclick="downloadApk()" class="group relative flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 via-fuchsia-500 to-purple-600 hover:from-purple-500 hover:to-fuchsia-400 transition-all shadow-lg shadow-purple-600/35 hover:scale-[1.02] cursor-pointer border border-purple-300/30">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-            <span>Download APK</span>
-            <span id="nav-version-badge" class="text-[10px] px-1.5 py-0.5 rounded-md bg-black/25 font-bold font-mono">v1.0.0</span>
-          </button>
+          <!-- Top Action Buttons -->
+          <div class="flex items-center gap-2.5">
+            <button onclick="openDeveloperModal()" class="hidden sm:flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 shadow-sm transition">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              <span>Developer Info</span>
+            </button>
+
+            <button onclick="downloadApk()" class="group relative flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 transition-all shadow-lg shadow-emerald-600/30 hover:scale-[1.02] cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+              <span>Download APK</span>
+              <span id="nav-version-badge" class="text-[10px] px-1.5 py-0.5 rounded-md bg-black/20 font-bold font-mono">v1.0.0</span>
+            </button>
+          </div>
+
         </div>
       </div>
     </header>
@@ -130,168 +164,324 @@
     <main class="flex-1">
 
       <!-- Hero Section -->
-      <section id="overview" class="pt-20 pb-16 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto">
+      <section id="overview" class="pt-16 pb-16 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto">
         
-        <!-- Live OTA Pill & Creator Badge -->
-        <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
-          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full liquid-glass border border-purple-400/30 text-xs font-semibold text-purple-200 shadow-sm">
-            <span class="w-2 h-2 rounded-full bg-fuchsia-400 animate-pulse"></span>
-            <span>In-App Background OTA Engine Active</span>
-            <span class="text-purple-400">•</span>
-            <span id="hero-version-text" class="text-white font-mono">v1.0.0</span>
+        <!-- Badge Pills -->
+        <div class="flex flex-wrap items-center justify-center gap-2.5 mb-7">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-glass-white border border-emerald-300/60 text-xs font-bold text-emerald-800 shadow-xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Official Version 1.0.0 Released</span>
+            <span class="text-emerald-300">•</span>
+            <span id="hero-version-text" class="text-slate-900 font-mono">v1.0.0 Stable</span>
           </div>
 
-          <a href="#developer" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-glass border border-purple-400/20 text-xs font-medium text-purple-200/90 hover:text-white transition">
-            <span>Developed by Faraz Munawar</span>
-          </a>
+          <button onclick="openDeveloperModal()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full liquid-glass-white border border-slate-200 text-xs font-bold text-slate-700 hover:text-emerald-700 hover:border-emerald-300 transition cursor-pointer">
+            <svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+            <span>Developed by Faraz Munawar (ڈویلپر بائے فراز منور)</span>
+          </button>
         </div>
 
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight">
-          Liquid Glass Aesthetics. <br>
-          <span class="text-gradient-purple-white">
-            Next-Gen Android Media Engine.
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight text-slate-900 leading-tight">
+          Pure White Liquid Glass. <br>
+          <span class="text-gradient-emerald-slate">
+            Next-Gen Android Audio Engine.
           </span>
         </h1>
 
-        <p class="mt-6 text-base sm:text-lg text-purple-200/80 max-w-2xl mx-auto leading-relaxed">
-          Tactile liquid frosted glass textures, 10-band hardware equalizer with 300% loudness, real-time synchronized karaoke lyrics, 
-          hardware AES-256 encrypted media vault, and in-app updates with <strong>zero browser redirects</strong>.
+        <p class="mt-6 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+          High-contrast tactile white glass aesthetics, 10-band studio hardware equalizer, custom background photos with real-time opacity dimming, 
+          hardware AES-256 private vault, and seamless in-app background APK updates.
         </p>
 
         <!-- CTA Action Buttons -->
         <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
-          <button onclick="downloadApk()" class="flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-600 via-fuchsia-500 to-purple-600 hover:from-purple-500 hover:to-fuchsia-400 text-white font-extrabold text-sm shadow-xl shadow-purple-600/35 transition-all hover:scale-105 cursor-pointer border border-purple-300/30">
+          <button onclick="downloadApk()" class="flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-sm shadow-xl shadow-emerald-600/30 transition-all hover:scale-105 cursor-pointer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-            <span id="hero-btn-title">Download Lerza Player Pro</span>
-            <span id="hero-apk-size" class="text-xs px-2 py-0.5 rounded-lg bg-black/25 font-mono">19.8 MB</span>
+            <span id="hero-btn-title">Download Lerza Player APK</span>
+            <span id="hero-apk-size" class="text-xs px-2.5 py-0.5 rounded-lg bg-black/20 font-mono">19.8 MB</span>
           </button>
 
-          <a href="#simulator" class="flex items-center gap-2 px-6 py-4 rounded-2xl liquid-glass hover:bg-white/10 text-white font-bold text-sm border border-purple-400/30 transition cursor-pointer">
-            <svg class="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-            <span>Try App Simulator</span>
+          <a href="#simulator" class="flex items-center gap-2 px-7 py-4 rounded-2xl liquid-glass-white hover:bg-white text-slate-800 font-bold text-sm border border-slate-200 transition cursor-pointer shadow-sm">
+            <svg class="w-5 h-5 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+            <span>Try Live Simulator</span>
           </a>
         </div>
 
-        <!-- Release Meta Details -->
-        <div class="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs text-purple-300/80">
-          <span class="flex items-center gap-1.5">
-            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-            Android 8.0+ Ready
+        <!-- Release Features Grid Chips -->
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-slate-600">
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs">
+            <svg class="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
+            Android 8.0 - 15+ Ready
           </span>
-          <span class="flex items-center gap-1.5">
-            <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            Direct In-App Install
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs">
+            <svg class="w-4 h-4 text-teal-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3"></path></svg>
+            10-Band Pro Equalizer
           </span>
-          <span class="flex items-center gap-1.5">
-            <svg class="w-4 h-4 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-            AES-256 Vault
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs">
+            <svg class="w-4 h-4 text-sky-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+            Encrypted Private Vault
+          </span>
+          <span class="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-slate-200 shadow-xs">
+            <svg class="w-4 h-4 text-amber-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            No Browser Redirects
           </span>
         </div>
       </section>
 
       <!-- Interactive Phone Simulator Section -->
-      <section id="simulator" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+      <section id="simulator" class="py-16 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
-          <!-- Left: Phone Simulator Frame -->
-          <div class="lg:col-span-6 flex justify-center">
-            <div class="relative w-[340px] sm:w-[380px] h-[720px] rounded-[52px] bg-[#0c051a] border-4 border-purple-500/40 shadow-2xl overflow-hidden flex flex-col glow-purple">
+          <!-- Left: Phone Simulator Frame with Mode Switcher -->
+          <div class="lg:col-span-6 flex flex-col items-center">
+            
+            <!-- Simulator Tab Selector -->
+            <div class="w-full max-w-[360px] flex items-center justify-between p-1 rounded-2xl liquid-glass-white border border-slate-200/80 mb-4 text-xs font-bold">
+              <button onclick="setSimTab('player')" id="tab-btn-player" class="flex-1 py-1.5 rounded-xl bg-emerald-600 text-white shadow-sm transition">Player</button>
+              <button onclick="setSimTab('equalizer')" id="tab-btn-equalizer" class="flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 transition">10-Band EQ</button>
+              <button onclick="setSimTab('theme')" id="tab-btn-theme" class="flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 transition">Theme</button>
+              <button onclick="setSimTab('effects')" id="tab-btn-effects" class="flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 transition">Effects</button>
+            </div>
+
+            <!-- Mobile Frame -->
+            <div class="relative w-[340px] sm:w-[370px] h-[700px] rounded-[48px] phone-glass-shell border-4 border-slate-800 overflow-hidden flex flex-col select-none">
               
-              <!-- Dynamic Island -->
-              <div class="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-5 bg-black rounded-full z-30 flex items-center justify-end px-3">
-                <div class="w-2.5 h-2.5 rounded-full bg-purple-400/80 animate-pulse"></div>
+              <!-- Dynamic Island Notch -->
+              <div class="absolute top-2.5 left-1/2 -translate-x-1/2 w-24 h-4 bg-black rounded-full z-40 flex items-center justify-end px-2.5">
+                <div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
               </div>
 
-              <!-- Content Header -->
-              <div class="pt-10 px-5 pb-3 flex items-center justify-between border-b border-purple-500/20 bg-[#160a33]/90 z-20">
-                <div class="flex items-center gap-2">
-                  <div class="w-7 h-7 rounded-lg overflow-hidden bg-purple-950 p-0.5">
-                    <img id="sim-logo" src="logo-transparent.png" alt="App" class="w-full h-full object-contain">
-                  </div>
-                  <div>
-                    <h3 id="sim-app-name" class="text-xs font-bold text-white">Lerza Player Pro</h3>
-                    <p class="text-[9px] text-purple-300">v1.0.0 • Now Playing</p>
-                  </div>
+              <!-- Phone Status Bar -->
+              <div class="pt-3 px-6 pb-1 flex items-center justify-between text-[11px] font-semibold text-slate-400 z-30 bg-slate-900">
+                <span>9:41</span>
+                <div class="flex items-center gap-1.5 text-[10px]">
+                  <span>5G</span>
+                  <span>100%</span>
                 </div>
-                <button onclick="triggerUpdatePopup()" class="px-2.5 py-1 rounded-lg bg-purple-500/20 text-purple-200 text-[10px] font-bold border border-purple-400/30 hover:bg-purple-500/30 transition">
-                  Check Update
-                </button>
               </div>
 
-              <!-- Media Player Body -->
-              <div class="flex-1 p-5 flex flex-col justify-between relative overflow-y-auto">
+              <!-- Phone Screen Content (Tab Dependent) -->
+              <div class="flex-1 bg-slate-950 text-slate-100 flex flex-col relative overflow-hidden">
                 
-                <!-- Album Artwork -->
-                <div class="w-full aspect-square rounded-3xl overflow-hidden relative shadow-2xl bg-gradient-to-tr from-purple-900 via-fuchsia-950 to-[#0e0622] p-[2px]">
-                  <div class="w-full h-full bg-[#160a33] rounded-[22px] flex flex-col items-center justify-center p-6 text-center">
-                    <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-purple-500 to-fuchsia-500 flex items-center justify-center mb-4 shadow-lg shadow-purple-500/40">
-                      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path></svg>
+                <!-- SIMULATOR VIEW 1: NOW PLAYING -->
+                <div id="sim-view-player" class="flex-1 flex flex-col justify-between p-5 space-y-4">
+                  <!-- Top Bar -->
+                  <div class="flex items-center justify-between pt-2">
+                    <div class="flex items-center gap-2">
+                      <div class="w-8 h-8 rounded-xl bg-emerald-500/20 flex items-center justify-center p-1">
+                        <img id="sim-logo" src="logo-transparent.png" alt="App" class="w-full h-full object-contain">
+                      </div>
+                      <div>
+                        <h4 class="text-xs font-extrabold text-white">LerzaPlayer Pro</h4>
+                        <p class="text-[9.5px] text-emerald-400 font-mono">v1.0.0 • Audiophile Engine</p>
+                      </div>
                     </div>
-                    <h4 class="text-sm font-bold text-white">Liquid Velvet Master</h4>
-                    <p class="text-[11px] text-purple-300/70 mt-1">High-Resolution Audio 96kHz</p>
+                    <button onclick="triggerUpdatePopup()" class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-400 text-[10px] font-bold border border-emerald-500/30 hover:bg-emerald-500/25 transition">
+                      Check Update
+                    </button>
+                  </div>
+
+                  <!-- Artwork -->
+                  <div class="w-full aspect-square rounded-3xl overflow-hidden relative shadow-2xl bg-gradient-to-tr from-slate-900 via-emerald-950 to-slate-900 p-1 border border-slate-800">
+                    <div class="w-full h-full bg-slate-900/90 rounded-[20px] flex flex-col items-center justify-center p-6 text-center relative overflow-hidden">
+                      <div class="absolute inset-0 bg-cover bg-center opacity-30 blur-sm" style="background-image: url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=600&auto=format&fit=crop&q=80');"></div>
+                      <div class="relative z-10 w-20 h-20 rounded-full bg-emerald-500/20 border-2 border-emerald-400 flex items-center justify-center mb-3 shadow-lg shadow-emerald-500/20">
+                        <svg class="w-10 h-10 text-emerald-400" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path></svg>
+                      </div>
+                      <h4 class="relative z-10 text-sm font-extrabold text-white">Dil Dil Pakistan</h4>
+                      <p class="relative z-10 text-[11px] text-slate-300">Vital Signs • 24-Bit / 96kHz</p>
+                    </div>
+                  </div>
+
+                  <!-- Seekbar & Controls -->
+                  <div class="space-y-3">
+                    <div>
+                      <div class="flex justify-between text-[11px] text-slate-400 font-mono">
+                        <span id="track-cur-time">02:14</span>
+                        <span>04:42</span>
+                      </div>
+                      <div class="w-full h-1.5 bg-slate-800 rounded-full mt-1.5 overflow-hidden">
+                        <div id="sim-progress-bar" class="w-[52%] h-full bg-emerald-500 rounded-full transition-all"></div>
+                      </div>
+                    </div>
+
+                    <div class="flex items-center justify-between px-3 pt-1">
+                      <button onclick="prevSong()" class="text-slate-400 hover:text-white transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.334 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"></path></svg>
+                      </button>
+                      <button onclick="togglePlay()" id="btn-play-pause" class="w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white flex items-center justify-center font-bold shadow-lg shadow-emerald-500/40 transition">
+                        <svg id="icon-play" class="w-6 h-6 fill-current ml-0.5" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"></path></svg>
+                      </button>
+                      <button onclick="nextSong()" class="text-slate-400 hover:text-white transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z"></path></svg>
+                      </button>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Track Info & Controls -->
-                <div class="space-y-4">
-                  <div>
-                    <div class="flex justify-between text-[11px] text-purple-300/70 font-mono">
-                      <span>02:14</span>
-                      <span>04:38</span>
-                    </div>
-                    <div class="w-full h-1.5 bg-purple-950 rounded-full mt-1.5 overflow-hidden">
-                      <div class="w-1/2 h-full bg-gradient-to-r from-purple-400 to-white rounded-full"></div>
+                <!-- SIMULATOR VIEW 2: 10-BAND EQUALIZER -->
+                <div id="sim-view-equalizer" class="hidden flex-1 p-5 flex flex-col justify-between overflow-y-auto space-y-3">
+                  <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <h4 class="text-xs font-extrabold text-white flex items-center gap-1.5">
+                      <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+                      10-Band Hardware Equalizer
+                    </h4>
+                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold">ACTIVE</span>
+                  </div>
+
+                  <!-- Presets -->
+                  <div class="flex gap-1.5 overflow-x-auto pb-1 scrollbar-none text-[10px] font-bold">
+                    <span class="px-2.5 py-1 rounded-lg bg-emerald-600 text-white shrink-0">Normal</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 shrink-0">Bass Boost</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 shrink-0">Rock</span>
+                    <span class="px-2.5 py-1 rounded-lg bg-slate-800 text-slate-300 shrink-0">Vocal</span>
+                  </div>
+
+                  <!-- 10 Vertical Sliders Representation -->
+                  <div class="p-2.5 rounded-2xl bg-slate-900 border border-slate-800">
+                    <div class="grid grid-cols-10 gap-1 items-end h-32 pt-2">
+                      <div class="flex flex-col items-center h-full justify-between"><span class="text-[8px] text-emerald-400">+3</span><div class="w-2 h-20 bg-slate-800 rounded-full flex flex-col justify-end"><div class="w-full bg-emerald-500 rounded-full h-[65%]"></div></div><span class="text-[7px] text-slate-400">31Hz</span></div>
+                      <div class="flex flex-col items-center h-full justify-between"><span class="text-[8px] text-emerald-400">+5</span><div class="w-2 h-20 bg-slate-800 rounded-full flex flex-col justify-end"><div class="w-full bg-emerald-500 rounded-full h-[80%]"></div></div><span class="text-[7px] text-slate-400">62Hz</span></div>
+                      <div class="flex flex-col items-center h-full justify-between"><span class="text-[8px] text-emerald-400">+2</span><div class="w-2 h-20 bg-slate-800 rounded-full flex flex-col justify-end"><div class="w-full bg-emerald-500 rounded-full h-[60%]"></div></div><span class="text-[7px] text-slate-400">125Hz</span></div>
+                      <div class="flex flex-col items-center h-full justify-between"><span class="text-[8px] text-emerald-400">0</span><div class="w-2 h-20 bg-slate-800 rounded-full flex flex-col justify-end"><div class="w-full bg-emerald-500 rounded-full h-[50%]"></div></div><span class="text-[7px] text-slate-400">250Hz</span></div>
+                      <div class="flex flex-col items-center h-full justify-between"><span class="text-[8px] text-emerald-400">-1</span><div class="w-2 h-20 bg-slate-800 rounded-full flex flex-col justify-end"><div class="w-full bg-emerald-500 rounded-full h-[45%]"></div></div><span class="text-[7px] text-slate-400">500Hz</span></div>
+                      <div class="flex flex-col items-center h-full justify-between"><span class="text-[8px] text-emerald-400">+1</span><div class="w-2 h-20 bg-slate-800 rounded-full flex flex-col justify-end"><div class="w-full bg-emerald-500 rounded-full h-[55%]"></div></div><span class="text-[7px] text-slate-400">1k</span></div>
+                      <div class="flex flex-col items-center h-full justify-between"><span class="text-[8px] text-emerald-400">+3</span><div class="w-2 h-20 bg-slate-800 rounded-full flex flex-col justify-end"><div class="w-full bg-emerald-500 rounded-full h-[65%]"></div></div><span class="text-[7px] text-slate-400">2k</span></div>
+                      <div class="flex flex-col items-center h-full justify-between"><span class="text-[8px] text-emerald-400">+4</span><div class="w-2 h-20 bg-slate-800 rounded-full flex flex-col justify-end"><div class="w-full bg-emerald-500 rounded-full h-[70%]"></div></div><span class="text-[7px] text-slate-400">4k</span></div>
+                      <div class="flex flex-col items-center h-full justify-between"><span class="text-[8px] text-emerald-400">+6</span><div class="w-2 h-20 bg-slate-800 rounded-full flex flex-col justify-end"><div class="w-full bg-emerald-500 rounded-full h-[85%]"></div></div><span class="text-[7px] text-slate-400">8k</span></div>
+                      <div class="flex flex-col items-center h-full justify-between"><span class="text-[8px] text-emerald-400">+8</span><div class="w-2 h-20 bg-slate-800 rounded-full flex flex-col justify-end"><div class="w-full bg-emerald-500 rounded-full h-[95%]"></div></div><span class="text-[7px] text-slate-400">16k</span></div>
                     </div>
                   </div>
 
-                  <div class="flex items-center justify-between px-2">
-                    <button class="text-purple-300/70 hover:text-white"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.334 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"></path></svg></button>
-                    <button class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white flex items-center justify-center font-bold shadow-lg shadow-purple-500/50"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg></button>
-                    <button class="text-purple-300/70 hover:text-white"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z"></path></svg></button>
+                  <!-- Extra Knobs -->
+                  <div class="space-y-2">
+                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs">
+                      <span class="text-slate-300 font-semibold text-[11px]">Bass Boost Level</span>
+                      <span class="font-mono text-emerald-400 font-bold text-[11px]">80%</span>
+                    </div>
+                    <div class="p-2.5 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between text-xs">
+                      <span class="text-slate-300 font-semibold text-[11px]">3D Spatial Surround</span>
+                      <span class="font-mono text-teal-400 font-bold text-[11px]">65%</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- In-App Update Simulation Dialog Overlay -->
-                <div id="phone-update-dialog" class="hidden absolute inset-0 bg-[#0c051a]/95 backdrop-blur-md p-6 flex flex-col justify-center z-40 transition-all">
-                  <div class="rounded-3xl bg-[#160a33] border border-purple-400/50 p-5 space-y-4 shadow-2xl glow-purple">
+                <!-- SIMULATOR VIEW 3: THEME & WALLPAPER STUDIO -->
+                <div id="sim-view-theme" class="hidden flex-1 p-5 flex flex-col justify-between overflow-y-auto space-y-3">
+                  <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <h4 class="text-xs font-extrabold text-white">Theme & Wallpapers</h4>
+                    <span class="text-[10px] text-slate-400">Live Preview</span>
+                  </div>
+
+                  <!-- Interactive Opacity Slider Simulation -->
+                  <div class="p-3 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+                    <div class="flex justify-between items-center text-xs">
+                      <span class="font-bold text-slate-200 text-[11px]">Photo Opacity Slider</span>
+                      <span id="sim-opacity-val" class="font-mono text-emerald-400 font-bold text-[11px]">40%</span>
+                    </div>
+                    <input type="range" min="10" max="90" value="40" oninput="changeSimOpacity(this.value)" class="w-full accent-emerald-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer">
+                    <p class="text-[9.5px] text-slate-400">وال پیپر کی شفافیت / ڈارکنس کو لائیو ایڈجسٹ کریں</p>
+                  </div>
+
+                  <!-- Interactive Song Size Slider Simulation -->
+                  <div class="p-3 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+                    <div class="flex justify-between items-center text-xs">
+                      <span class="font-bold text-slate-200 text-[11px]">Song Size & Density</span>
+                      <span id="sim-size-val" class="font-mono text-teal-400 font-bold text-[11px]">1.15x</span>
+                    </div>
+                    <input type="range" min="80" max="160" value="115" oninput="changeSimDensity(this.value)" class="w-full accent-teal-500 h-1.5 bg-slate-800 rounded-lg cursor-pointer">
+                    <p class="text-[9.5px] text-slate-400">ٹریک کی اونچائی اور ٹیکسٹ کا سائز تبدیل کریں</p>
+                  </div>
+
+                  <!-- Theme Color Chips -->
+                  <div class="p-3 rounded-2xl bg-slate-900 border border-slate-800 space-y-2">
+                    <span class="text-[11px] font-bold text-slate-300">11 Accent Colors:</span>
+                    <div class="flex gap-2 items-center">
+                      <span class="w-5 h-5 rounded-full bg-emerald-500 ring-2 ring-white"></span>
+                      <span class="w-5 h-5 rounded-full bg-blue-500"></span>
+                      <span class="w-5 h-5 rounded-full bg-purple-500"></span>
+                      <span class="w-5 h-5 rounded-full bg-rose-500"></span>
+                      <span class="w-5 h-5 rounded-full bg-amber-500"></span>
+                      <span class="w-5 h-5 rounded-full bg-cyan-500"></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SIMULATOR VIEW 4: SOUND EFFECTS & QUALITY -->
+                <div id="sim-view-effects" class="hidden flex-1 p-5 flex flex-col justify-between overflow-y-auto space-y-3">
+                  <div class="flex items-center justify-between border-b border-slate-800 pb-2">
+                    <h4 class="text-xs font-extrabold text-white">Sound Quality & Effects</h4>
+                    <span class="text-[10px] text-emerald-400 font-mono font-bold">24-Bit HD</span>
+                  </div>
+
+                  <div class="space-y-2">
+                    <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+                      <div>
+                        <p class="text-xs font-bold text-white">High-Res Audio Output</p>
+                        <p class="text-[9.5px] text-slate-400">24-bit / 192kHz Studio Master</p>
+                      </div>
+                      <div class="w-8 h-4 rounded-full bg-emerald-500 flex items-center justify-end px-0.5"><div class="w-3 h-3 rounded-full bg-white"></div></div>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+                      <div>
+                        <p class="text-xs font-bold text-white">Gapless Playback</p>
+                        <p class="text-[9.5px] text-slate-400">Continuous playback without gaps</p>
+                      </div>
+                      <div class="w-8 h-4 rounded-full bg-emerald-500 flex items-center justify-end px-0.5"><div class="w-3 h-3 rounded-full bg-white"></div></div>
+                    </div>
+
+                    <div class="p-3 rounded-xl bg-slate-900 border border-slate-800 flex items-center justify-between">
+                      <div>
+                        <p class="text-xs font-bold text-white">Headphone Auto-Pause</p>
+                        <p class="text-[9.5px] text-slate-400">Auto pause when disconnecting</p>
+                      </div>
+                      <div class="w-8 h-4 rounded-full bg-emerald-500 flex items-center justify-end px-0.5"><div class="w-3 h-3 rounded-full bg-white"></div></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- IN-APP UPDATE POPUP SIMULATION -->
+                <div id="phone-update-dialog" class="hidden absolute inset-0 bg-slate-950/90 backdrop-blur-md p-6 flex flex-col justify-center z-50">
+                  <div class="rounded-3xl bg-slate-900 border-2 border-emerald-500/50 p-5 space-y-4 shadow-2xl">
                     <div class="flex items-center gap-3">
-                      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-500 to-fuchsia-500 text-white flex items-center justify-center shrink-0">
+                      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 text-white flex items-center justify-center shrink-0 shadow-md shadow-emerald-500/30">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                       </div>
                       <div>
                         <h4 class="text-xs font-bold text-white">New Update Available!</h4>
-                        <p id="popup-version" class="text-[10px] text-purple-300 font-mono">v1.0.0 (Build 1)</p>
+                        <p id="popup-version" class="text-[10px] text-emerald-400 font-mono">v1.0.0 (Official Build)</p>
                       </div>
                     </div>
 
-                    <div class="text-[11px] text-purple-200/80 bg-[#0d051e] p-3 rounded-xl border border-purple-500/20 space-y-1">
-                      <p class="font-bold text-white text-[10px]">What's New:</p>
-                      <p>• In-App direct APK download without Chrome</p>
-                      <p>• 10-band hardware equalizer engine</p>
-                      <p>• AI karaoke lyrics & AES-256 Vault</p>
+                    <div class="text-[11px] text-slate-300 bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
+                      <p class="font-bold text-white text-[10px]">What's New in v1.0.0:</p>
+                      <p>• Direct 10-Band Hardware Equalizer</p>
+                      <p>• Photo Opacity & Song Size Sliders</p>
+                      <p>• In-App direct OTA APK download without browser</p>
                     </div>
 
                     <!-- Progress Bar -->
                     <div id="update-progress-container" class="hidden space-y-1.5">
-                      <div class="flex justify-between text-[10px] text-purple-300 font-mono">
-                        <span>Downloading APK...</span>
+                      <div class="flex justify-between text-[10px] text-emerald-400 font-mono">
+                        <span>Downloading APK in background...</span>
                         <span id="update-percentage">45%</span>
                       </div>
-                      <div class="w-full h-2 bg-purple-950 rounded-full overflow-hidden">
-                        <div id="update-bar" class="h-full bg-gradient-to-r from-purple-400 to-white transition-all duration-300" style="width: 45%;"></div>
+                      <div class="w-full h-2 bg-slate-800 rounded-full overflow-hidden">
+                        <div id="update-bar" class="h-full bg-emerald-500 transition-all duration-300" style="width: 45%;"></div>
                       </div>
                     </div>
 
-                    <!-- Install Ready State -->
+                    <!-- Ready Notice -->
                     <div id="update-ready-box" class="hidden p-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-[10px] text-emerald-300 text-center font-bold">
                       ✓ APK Downloaded! Android Package Installer Launched.
                     </div>
 
                     <div class="flex items-center gap-2 pt-1">
-                      <button id="btn-start-update" onclick="simulateInAppDownload()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white font-bold text-xs hover:opacity-95 transition cursor-pointer">
+                      <button id="btn-start-update" onclick="simulateInAppDownload()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold text-xs hover:opacity-95 transition cursor-pointer shadow-md">
                         Update In-App Now
                       </button>
-                      <button onclick="closeUpdatePopup()" class="px-3 py-2.5 rounded-xl bg-purple-950/60 text-purple-200 text-xs font-semibold hover:bg-purple-900 transition cursor-pointer">
+                      <button onclick="closeUpdatePopup()" class="px-3.5 py-2.5 rounded-xl bg-slate-800 text-slate-300 text-xs font-semibold hover:bg-slate-700 transition cursor-pointer">
                         Later
                       </button>
                     </div>
@@ -302,45 +492,49 @@
             </div>
           </div>
 
-          <!-- Right: Architecture Details -->
+          <!-- Right: Architecture Details & Features Explanations -->
           <div class="lg:col-span-6 space-y-6">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full liquid-glass border border-purple-400/30 text-xs font-bold text-purple-300">
-              <span>🚀 Zero-Redirect Architecture</span>
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full liquid-glass-white border border-emerald-300/60 text-xs font-bold text-emerald-700">
+              <span>🚀 Zero-Redirect Direct Installation</span>
             </div>
 
-            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+            <h2 class="text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
               In-App Auto Update System <br>
-              <span class="text-gradient-purple-white">Seamless Background Installation</span>
+              <span class="text-gradient-emerald-slate">Direct Background APK Engine</span>
             </h2>
 
-            <p class="text-sm text-purple-200/80 leading-relaxed">
-              Traditional applications redirect users to external browsers or ad-loaded sites. 
-              Lerza Player Pro incorporates native <strong>FileProvider</strong> and <strong>PackageInstaller</strong> bindings, 
-              downloading the APK in the background and launching the installation prompt on the spot.
+            <p class="text-sm text-slate-600 leading-relaxed font-normal">
+              Unlike ordinary players that redirect you to ad-stuffed web pages, Lerza Player Pro includes native Android 
+              <strong>FileProvider</strong> and <strong>PackageInstaller</strong> bindings. It downloads the APK securely in the background 
+              and prompts for immediate installation inside the app.
             </p>
 
             <div class="space-y-4 pt-2">
-              <div class="p-4 rounded-2xl liquid-glass-card border border-purple-400/20 flex items-start gap-3">
-                <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold shrink-0 mt-0.5">1</div>
+              <div class="p-4 rounded-2xl liquid-card flex items-start gap-3.5">
+                <div class="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-black shrink-0 mt-0.5">1</div>
                 <div>
-                  <h4 class="text-xs font-bold text-white">GitHub Managed (update.json)</h4>
-                  <p class="text-[11px] text-purple-200/70 mt-0.5">All control stays in your repository. Commit a new version and users receive instant update notifications.</p>
+                  <h4 class="text-xs font-bold text-slate-900">GitHub Managed (update.json)</h4>
+                  <p class="text-[11.5px] text-slate-600 mt-0.5">Push a new release tag to your repository and all active users receive instant in-app notification.</p>
                 </div>
               </div>
 
-              <div class="p-4 rounded-2xl liquid-glass-card border border-purple-400/20 flex items-start gap-3">
-                <div class="w-8 h-8 rounded-xl bg-fuchsia-500/20 text-fuchsia-300 flex items-center justify-center font-bold shrink-0 mt-0.5">2</div>
+              <div class="p-4 rounded-2xl liquid-card flex items-start gap-3.5">
+                <div class="w-8 h-8 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center font-black shrink-0 mt-0.5">2</div>
                 <div>
-                  <h4 class="text-xs font-bold text-white">Seamless Download & Install</h4>
-                  <p class="text-[11px] text-purple-200/70 mt-0.5">No unzipping or manual file hunting required. One tap launches Android's native installer.</p>
+                  <h4 class="text-xs font-bold text-slate-900">Zero Browser Redirects</h4>
+                  <p class="text-[11.5px] text-slate-600 mt-0.5">No messy Chrome tabs or broken download mirrors. Single tap installs the APK safely.</p>
                 </div>
               </div>
             </div>
 
-            <div class="pt-4">
-              <button onclick="triggerUpdatePopup()" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600/30 to-fuchsia-600/30 hover:from-purple-600/50 hover:to-fuchsia-600/50 border border-purple-400/30 text-white text-xs font-bold transition flex items-center gap-2 cursor-pointer shadow-lg shadow-purple-500/20">
+            <div class="pt-2 flex flex-wrap items-center gap-3">
+              <button onclick="triggerUpdatePopup()" class="px-6 py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold transition flex items-center gap-2 cursor-pointer shadow-lg shadow-emerald-600/25">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
-                <span>Test Update Popup in Simulator</span>
+                <span>Trigger In-App Update Simulator</span>
+              </button>
+
+              <button onclick="openDeveloperModal()" class="px-5 py-3.5 rounded-2xl liquid-glass-white hover:bg-white text-slate-700 text-xs font-bold transition flex items-center gap-2 cursor-pointer border border-slate-200">
+                <span>View Developer Credits</span>
               </button>
             </div>
 
@@ -350,104 +544,113 @@
       </section>
 
       <!-- 10-Band Equalizer Section -->
-      <section id="equalizer" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass border border-purple-400/30 text-xs font-bold text-purple-300 mb-3">
+      <section id="equalizer" class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="text-center mb-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass-white border border-emerald-300 text-xs font-bold text-emerald-700 mb-2">
             <span>Hardware DSP Audio Engine</span>
           </div>
-          <h2 class="text-3xl font-extrabold text-white">10-Band Studio Equalizer & 300% Boost</h2>
-          <p class="text-xs text-purple-200/70 mt-2">OpenSL ES hardware bindings with sub-bass resonance and distortion limiter</p>
+          <h2 class="text-3xl font-black text-slate-900">10-Band Studio Hardware Equalizer</h2>
+          <p class="text-xs text-slate-500 mt-1">OpenSL ES hardware bindings with sub-bass resonance and audio limiter</p>
         </div>
 
-        <div class="rounded-3xl liquid-glass border-2 border-purple-400/30 p-8 shadow-2xl glow-purple space-y-6">
+        <div class="rounded-3xl liquid-card p-8 shadow-xl space-y-6">
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
-            <div class="p-3 rounded-2xl bg-purple-950/60 border border-purple-400/30 text-center font-bold text-white">Lark Jazz</div>
-            <div class="p-3 rounded-2xl bg-purple-950/30 border border-purple-500/20 text-center text-purple-300">Bass Booster</div>
-            <div class="p-3 rounded-2xl bg-purple-950/30 border border-purple-500/20 text-center text-purple-300">Pop Vocal</div>
-            <div class="p-3 rounded-2xl bg-purple-950/30 border border-purple-500/20 text-center text-purple-300">Rock / Metal</div>
+            <div class="p-3 rounded-2xl bg-emerald-600 text-white text-center font-bold shadow-sm">Lark Jazz</div>
+            <div class="p-3 rounded-2xl bg-white border border-slate-200 text-center font-semibold text-slate-700">Bass Booster +300%</div>
+            <div class="p-3 rounded-2xl bg-white border border-slate-200 text-center font-semibold text-slate-700">Pop Vocalist</div>
+            <div class="p-3 rounded-2xl bg-white border border-slate-200 text-center font-semibold text-slate-700">Heavy Metal</div>
           </div>
-          <div class="h-44 bg-[#090414] rounded-2xl border border-purple-500/20 flex items-end justify-between p-6">
-            <div class="w-4 bg-purple-500 rounded-t h-32"></div>
-            <div class="w-4 bg-purple-400 rounded-t h-28"></div>
-            <div class="w-4 bg-fuchsia-400 rounded-t h-20"></div>
-            <div class="w-4 bg-purple-500 rounded-t h-16"></div>
-            <div class="w-4 bg-purple-400 rounded-t h-14"></div>
-            <div class="w-4 bg-fuchsia-400 rounded-t h-18"></div>
-            <div class="w-4 bg-purple-500 rounded-t h-24"></div>
-            <div class="w-4 bg-purple-400 rounded-t h-28"></div>
-            <div class="w-4 bg-fuchsia-400 rounded-t h-34"></div>
+
+          <div class="h-44 bg-slate-900 rounded-2xl border border-slate-800 flex items-end justify-between p-6">
+            <div class="w-4 bg-emerald-500 rounded-t h-32"></div>
+            <div class="w-4 bg-teal-400 rounded-t h-28"></div>
+            <div class="w-4 bg-emerald-400 rounded-t h-20"></div>
+            <div class="w-4 bg-teal-500 rounded-t h-16"></div>
+            <div class="w-4 bg-emerald-500 rounded-t h-14"></div>
+            <div class="w-4 bg-teal-400 rounded-t h-18"></div>
+            <div class="w-4 bg-emerald-500 rounded-t h-24"></div>
+            <div class="w-4 bg-teal-400 rounded-t h-28"></div>
+            <div class="w-4 bg-emerald-400 rounded-t h-34"></div>
             <div class="w-4 bg-white rounded-t h-36"></div>
           </div>
         </div>
       </section>
 
       <!-- Private Vault Section -->
-      <section id="vault" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass border border-purple-400/30 text-xs font-bold text-purple-300 mb-3">
-            <span>Military AES-256 CTR Storage</span>
+      <section id="vault" class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="text-center mb-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass-white border border-emerald-300 text-xs font-bold text-emerald-700 mb-2">
+            <span>Hardware AES-256 CTR Encrypted Storage</span>
           </div>
-          <h2 class="text-3xl font-extrabold text-white">Private Media Vault (Hide Songs & Videos)</h2>
-          <p class="text-xs text-purple-200/70 mt-2">Keep personal recordings, WhatsApp voice notes, and private 4K videos invisible from Android gallery</p>
+          <h2 class="text-3xl font-black text-slate-900">Private Media Vault (Hide Songs & Videos)</h2>
+          <p class="text-xs text-slate-500 mt-1">Keep personal audio recordings and confidential 4K video files locked away from phone gallery</p>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-          <div class="p-6 rounded-3xl liquid-glass-card border border-purple-400/20 space-y-2">
-            <h4 class="text-sm font-bold text-white">🎵 Hide Songs & Audio</h4>
-            <p class="text-xs text-purple-200/70">Secure unreleased demos and confidential tracks with PIN & Pattern lock.</p>
+          <div class="p-6 rounded-3xl liquid-card space-y-2">
+            <h4 class="text-sm font-bold text-slate-900">🎵 Hide Songs & Recordings</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">Secure private voice memos, unreleased audio tracks, and music with PIN & biometric pattern.</p>
           </div>
-          <div class="p-6 rounded-3xl liquid-glass-card border border-purple-400/20 space-y-2">
-            <h4 class="text-sm font-bold text-white">🎬 Hide 4K Private Videos</h4>
-            <p class="text-xs text-purple-200/70">Invisible in system photo galleries, directly playable inside the app.</p>
+          <div class="p-6 rounded-3xl liquid-card space-y-2">
+            <h4 class="text-sm font-bold text-slate-900">🎬 Hide 4K Private Videos</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">Invisible in Android Gallery or Google Photos. Directly playable inside Lerza Player's vault player.</p>
           </div>
-          <div class="p-6 rounded-3xl liquid-glass-card border border-purple-400/20 space-y-2">
-            <h4 class="text-sm font-bold text-white">🛡️ Hardware Keystore</h4>
-            <p class="text-xs text-purple-200/70">Cryptographic keys never leave the phone's hardware Secure Enclave.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- Liquid Glass Theme Engine -->
-      <section id="themes" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
-        <div class="text-center mb-12">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass border border-purple-400/30 text-xs font-bold text-purple-300 mb-3">
-            <span>Theme Generator</span>
-          </div>
-          <h2 class="text-3xl font-extrabold text-white">Dynamic Liquid Glass Themes</h2>
-          <p class="text-xs text-purple-200/70 mt-2">Switch effortlessly between Liquid Purple, Pure White Frost, and AMOLED Black</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <div class="p-5 rounded-3xl bg-purple-600/30 border border-purple-400/40 text-center space-y-1">
-            <p class="text-sm font-bold text-white">Liquid Purple Glass</p>
-            <span class="text-[10px] text-purple-300">Fluid violet & white highlights</span>
-          </div>
-          <div class="p-5 rounded-3xl bg-white text-slate-900 text-center space-y-1">
-            <p class="text-sm font-bold">Pure White Frost</p>
-            <span class="text-[10px] text-slate-600">Ceramic high-contrast clarity</span>
-          </div>
-          <div class="p-5 rounded-3xl bg-black border border-purple-500/40 text-center space-y-1">
-            <p class="text-sm font-bold text-purple-200">AMOLED Black</p>
-            <span class="text-[10px] text-purple-400">Zero battery consumption on OLED</span>
+          <div class="p-6 rounded-3xl liquid-card space-y-2">
+            <h4 class="text-sm font-bold text-slate-900">🛡️ Hardware Keystore</h4>
+            <p class="text-xs text-slate-600 leading-relaxed">Cryptographic keys never touch storage; safeguarded by Android's hardware Secure Enclave.</p>
           </div>
         </div>
       </section>
 
-      <!-- Developer Section -->
-      <section id="developer" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-        <div class="rounded-[36px] liquid-glass border-2 border-purple-400/30 p-8 sm:p-12 text-center space-y-4 glow-purple">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass border border-purple-400/30 text-xs font-semibold text-purple-200 shadow-sm">
-            <span>Lead Architect & Creator</span>
+      <!-- Themes & Opacity Slider Section -->
+      <section id="themes" class="py-16 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="text-center mb-10">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass-white border border-emerald-300 text-xs font-bold text-emerald-700 mb-2">
+            <span>Custom Wallpaper Studio</span>
           </div>
-          <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Developed by Faraz Munawar</h2>
-          <p class="text-sm text-purple-200/80 max-w-xl mx-auto leading-relaxed">
-            Engineered with a dedicated focus on high-fidelity lossless audio reproduction, 
-            hardware-accelerated Android architecture, and next-generation liquid glass aesthetics.
+          <h2 class="text-3xl font-black text-slate-900">Live Photo Opacity & Density Scaling</h2>
+          <p class="text-xs text-slate-500 mt-1">Pick any gallery picture and precisely dial the background opacity slider with 11 color palettes</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+          <div class="p-5 rounded-3xl liquid-card text-center space-y-1">
+            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mx-auto mb-2 font-bold">40%</div>
+            <p class="text-sm font-bold text-slate-900">Live Opacity Slider</p>
+            <span class="text-[11px] text-slate-500">Fine-tune wallpaper dimming from 5% to 100%</span>
+          </div>
+          <div class="p-5 rounded-3xl liquid-card text-center space-y-1">
+            <div class="w-10 h-10 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center mx-auto mb-2 font-bold">1.15x</div>
+            <p class="text-sm font-bold text-slate-900">Song Density Adjuster</p>
+            <span class="text-[11px] text-slate-500">Scale track row padding & thumbnail dimensions</span>
+          </div>
+          <div class="p-5 rounded-3xl liquid-card text-center space-y-1">
+            <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center mx-auto mb-2 font-bold">11</div>
+            <p class="text-sm font-bold text-slate-900">Accent Color Themes</p>
+            <span class="text-[11px] text-slate-500">Emerald, Sapphire, Violet, Gold, Rose and more</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Developer Bottom Section -->
+      <section id="developer" class="py-16 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="rounded-[36px] liquid-card border-2 border-emerald-300 p-8 sm:p-12 text-center space-y-4 shadow-xl">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold shadow-xs">
+            <span>LEAD ARCHITECT & DEVELOPER</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-black text-slate-900">Developed by Faraz Munawar</h2>
+          <div class="text-xl sm:text-2xl font-bold text-emerald-700">
+            ڈویلپر بائے فراز منور
+          </div>
+          <p class="text-sm text-slate-600 max-w-xl mx-auto leading-relaxed">
+            Crafted with passion for pure lossless sound, hardware-accelerated playback, 
+            and next-generation white liquid glass aesthetics.
           </p>
-          <div class="pt-4 flex items-center justify-center gap-2 text-xs font-mono text-purple-300">
-            <span>Lerza Player Pro Edition</span>
+          <div class="pt-3 flex flex-wrap items-center justify-center gap-2 text-xs font-mono text-slate-500">
+            <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200">Lerza Player Pro Edition</span>
             <span>•</span>
-            <span>All Rights Reserved</span>
+            <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200">Version 1.0.0</span>
+            <span>•</span>
+            <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200">All Rights Reserved</span>
           </div>
         </div>
       </section>
@@ -455,24 +658,55 @@
     </main>
 
     <!-- Footer -->
-    <footer class="border-t border-purple-500/20 py-12 bg-[#090414] text-center text-xs text-purple-300/60">
+    <footer class="border-t border-slate-200/80 py-12 bg-white/70 backdrop-blur-xl text-center text-xs text-slate-500">
       <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
-        <div class="flex items-center gap-2 text-white font-bold text-sm">
+        <div class="flex items-center gap-2 text-slate-900 font-black text-base">
           <img id="footer-logo" src="logo-transparent.png" alt="Logo" class="w-6 h-6 object-contain">
-          <span>Lerza Player Pro 1.0.0</span>
+          <span>Lerza Player Pro • v1.0.0</span>
         </div>
-        <p class="max-w-md text-purple-200/70 text-[11px]">
-          Liquid Glass Android Media Engine with In-App OTA Background Update Integration. Developed by Faraz Munawar.
+        <p class="max-w-md text-slate-600 text-[11.5px] leading-relaxed">
+          White Liquid Glass Android Media Engine with In-App OTA Background Update Integration. <br>
+          <strong>Developed by Faraz Munawar (ڈویلپر بائے فراز منور)</strong>.
         </p>
-        <button onclick="downloadApk()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white font-bold hover:opacity-95 transition cursor-pointer">
-          Download APK v1.0.0
+        <button onclick="downloadApk()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold hover:opacity-95 transition cursor-pointer shadow-md shadow-emerald-600/20">
+          Download Official APK (v1.0.0)
         </button>
       </div>
     </footer>
 
   </div>
 
-  <!-- JavaScript Dynamic Logic -->
+  <!-- DEVELOPER POPUP MODAL (As requested: "اینڈ پہ کر کے میرا پاپ اپ بھی آئے جس کے اندر لکھا ہو ڈویلپر بائے فراز") -->
+  <div id="developer-popup-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-md animate-in fade-in duration-200">
+    <div class="relative w-full max-w-md rounded-3xl bg-white/95 border-2 border-emerald-400 p-6 sm:p-8 text-center space-y-4 shadow-2xl">
+      <!-- Close Button -->
+      <button onclick="closeDeveloperModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 flex items-center justify-center text-slate-600 font-bold text-sm transition cursor-pointer">
+        ✕
+      </button>
+
+      <div class="w-16 h-16 rounded-2xl bg-gradient-to-tr from-emerald-500 to-teal-400 flex items-center justify-center text-white mx-auto shadow-lg shadow-emerald-500/30">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
+      </div>
+
+      <div class="space-y-1">
+        <span class="text-[10px] font-extrabold uppercase tracking-widest text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">Official Creator</span>
+        <h3 class="text-2xl font-black text-slate-900 pt-2">Developed by Faraz Munawar</h3>
+        <p class="text-lg font-bold text-emerald-700">ڈویلپر بائے فراز منور</p>
+      </div>
+
+      <p class="text-xs text-slate-600 leading-relaxed max-w-xs mx-auto">
+        Created for Lerza Player Pro with 10-Band Pro Equalizer, Private Vault, and White Liquid Glass Aesthetics.
+      </p>
+
+      <div class="pt-2">
+        <button onclick="closeDeveloperModal()" class="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs shadow-md transition cursor-pointer">
+          Shukriya / Continue
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript Dynamic Logic & Simulator -->
   <script>
     let releaseData = {
       versionName: "1.0.0",
@@ -505,7 +739,7 @@
       const vBadge = document.getElementById('nav-version-badge');
       if (vBadge) vBadge.textContent = vText;
       const heroV = document.getElementById('hero-version-text');
-      if (heroV) heroV.textContent = vText;
+      if (heroV) heroV.textContent = vText + ' Stable';
       const heroSize = document.getElementById('hero-apk-size');
       if (heroSize) heroSize.textContent = releaseData.apkSize || '19.8 MB';
       const popVer = document.getElementById('popup-version');
@@ -522,6 +756,15 @@
       a.remove();
     }
 
+    // Modal Developer Popup
+    function openDeveloperModal() {
+      document.getElementById('developer-popup-modal').classList.remove('hidden');
+    }
+    function closeDeveloperModal() {
+      document.getElementById('developer-popup-modal').classList.add('hidden');
+    }
+
+    // In-App Update Simulation Dialog
     function triggerUpdatePopup() {
       document.getElementById('phone-update-dialog').classList.remove('hidden');
       document.getElementById('update-progress-container').classList.add('hidden');
@@ -555,9 +798,57 @@
       }, 250);
     }
 
+    // Simulator Interactive Tabs
+    function setSimTab(tab) {
+      ['player', 'equalizer', 'theme', 'effects'].forEach(t => {
+        const view = document.getElementById('sim-view-' + t);
+        const btn = document.getElementById('tab-btn-' + t);
+        if (t === tab) {
+          view.classList.remove('hidden');
+          btn.className = 'flex-1 py-1.5 rounded-xl bg-emerald-600 text-white shadow-sm transition';
+        } else {
+          view.classList.add('hidden');
+          btn.className = 'flex-1 py-1.5 rounded-xl text-slate-600 hover:text-slate-900 transition';
+        }
+      });
+    }
+
+    let isPlaying = true;
+    function togglePlay() {
+      isPlaying = !isPlaying;
+      const icon = document.getElementById('icon-play');
+      if (isPlaying) {
+        icon.innerHTML = '<path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path>';
+      } else {
+        icon.innerHTML = '<path d="M8 5v14l11-7z"></path>';
+      }
+    }
+
+    function nextSong() {
+      document.getElementById('track-cur-time').textContent = '00:00';
+      document.getElementById('sim-progress-bar').style.width = '0%';
+      setTimeout(() => {
+        document.getElementById('sim-progress-bar').style.width = '35%';
+        document.getElementById('track-cur-time').textContent = '01:25';
+      }, 300);
+    }
+
+    function prevSong() {
+      document.getElementById('track-cur-time').textContent = '00:00';
+      document.getElementById('sim-progress-bar').style.width = '0%';
+    }
+
+    function changeSimOpacity(val) {
+      document.getElementById('sim-opacity-val').textContent = val + '%';
+    }
+
+    function changeSimDensity(val) {
+      document.getElementById('sim-size-val').textContent = (val / 100).toFixed(2) + 'x';
+    }
+
     // Auto-detect image fallbacks
     function setupImages() {
-      const defaultIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' rx='24' fill='%23160a33'/%3E%3Cpolygon points='48,42 66,54 48,66' fill='%23c084fc'/%3E%3C/svg%3E";
+      const defaultIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' rx='24' fill='%2310b981'/%3E%3Cpolygon points='48,42 66,54 48,66' fill='%23ffffff'/%3E%3C/svg%3E";
       ['nav-logo', 'sim-logo', 'footer-logo'].forEach(id => {
         const el = document.getElementById(id);
         if (el) {
