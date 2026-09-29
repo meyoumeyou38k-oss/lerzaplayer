@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title id="page-title">Lerza Player Pro - Liquid Glass Android Media Engine</title>
+  <meta name="description" content="Official liquid glass website and OTA in-app update management system for Lerza Player Pro music and video player. Developed by Faraz Munawar.">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" type="image/png" href="app-icon.png">
+  
+  <!-- Tailwind CSS & Fonts -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #090414;
+      color: #f3e8ff;
+      overflow-x: hidden;
+    }
+    .font-mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .liquid-glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(28px) saturate(190%);
+      -webkit-backdrop-filter: blur(28px) saturate(190%);
+      border: 1px solid rgba(216, 180, 254, 0.2);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    }
+    .liquid-glass-card {
+      background: rgba(24, 12, 44, 0.55);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(216, 180, 254, 0.16);
+      box-shadow: 0 16px 40px -10px rgba(107, 33, 168, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    }
+    .liquid-glass-card:hover {
+      border-color: rgba(233, 213, 255, 0.45);
+      box-shadow: 0 20px 50px -10px rgba(168, 85, 247, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
+    }
+    .glow-purple {
+      box-shadow: 0 0 45px -5px rgba(168, 85, 247, 0.5);
+    }
+    .text-gradient-purple-white {
+      background: linear-gradient(135deg, #ffffff 15%, #f3e8ff 55%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #090414;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: rgba(168, 85, 247, 0.35);
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(192, 132, 252, 0.7);
+    }
+  </style>
+</head>
+<body class="selection:bg-purple-500/30 selection:text-white">
+
+  <!-- Ambient Glowing Background Spheres in Liquid Purple & Crystal White -->
+  <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div class="absolute -top-40 left-1/4 w-[650px] h-[650px] bg-purple-600/20 rounded-full blur-[150px]"></div>
+    <div class="absolute top-1/3 -right-40 w-[650px] h-[650px] bg-fuchsia-600/15 rounded-full blur-[160px]"></div>
+    <div class="absolute -bottom-40 left-1/3 w-[650px] h-[650px] bg-indigo-700/20 rounded-full blur-[150px]"></div>
+  </div>
+
+  <div class="relative z-10 flex flex-col min-h-screen">
+    
+    <!-- Navbar -->
+    <header class="sticky top-0 z-50 w-full backdrop-blur-2xl bg-[#0d071e]/75 border-b border-purple-500/20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+          
+          <!-- Auto-Detected Brand Logo -->
+          <a href="#" class="flex items-center gap-3 group">
+            <div class="relative">
+              <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-500 via-fuchsia-500 to-white p-[2px] shadow-lg shadow-purple-500/35">
+                <div class="w-full h-full bg-[#130b2b] rounded-[14px] flex items-center justify-center overflow-hidden p-1">
+                  <img id="nav-logo" src="logo-transparent.png" alt="Logo" class="w-full h-full object-contain">
+                </div>
+              </div>
+              <span class="absolute -bottom-1 -right-1 flex h-3.5 w-3.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-3.5 w-3.5 bg-fuchsia-500 border border-[#0d071e]"></span>
+              </span>
+            </div>
+
+            <div>
+              <div class="flex items-center gap-2">
+                <span id="app-brand-name" class="font-extrabold text-xl tracking-tight text-white uppercase">LERZA PLAYER</span>
+                <span class="text-[10px] font-black uppercase tracking-widest px-2 py-0.5 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white">PRO</span>
+              </div>
+              <p class="text-[11px] text-purple-300/80 font-medium">Liquid Glass Media Engine</p>
+            </div>
+          </a>
+
+          <!-- Nav Links -->
+          <nav class="hidden md:flex items-center gap-1 p-1 rounded-2xl liquid-glass border border-purple-400/20 text-xs font-semibold">
+            <a href="#overview" class="px-4 py-2 rounded-xl text-white bg-purple-600/30 border border-purple-400/40">Overview</a>
+            <a href="#simulator" class="px-4 py-2 rounded-xl text-purple-200/80 hover:text-white hover:bg-white/5 transition">Simulator</a>
+            <a href="#equalizer" class="px-4 py-2 rounded-xl text-purple-200/80 hover:text-white hover:bg-white/5 transition">Equalizer</a>
+            <a href="#vault" class="px-4 py-2 rounded-xl text-purple-200/80 hover:text-white hover:bg-white/5 transition">Vault</a>
+            <a href="#themes" class="px-4 py-2 rounded-xl text-purple-200/80 hover:text-white hover:bg-white/5 transition">Themes</a>
+            <a href="#developer" class="px-4 py-2 rounded-xl text-purple-200/80 hover:text-white hover:bg-white/5 transition">Developer</a>
+          </nav>
+
+          <!-- Primary CTA Button -->
+          <button onclick="downloadApk()" class="group relative flex items-center gap-2.5 px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-gradient-to-r from-purple-600 via-fuchsia-500 to-purple-600 hover:from-purple-500 hover:to-fuchsia-400 transition-all shadow-lg shadow-purple-600/35 hover:scale-[1.02] cursor-pointer border border-purple-300/30">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            <span>Download APK</span>
+            <span id="nav-version-badge" class="text-[10px] px-1.5 py-0.5 rounded-md bg-black/25 font-bold font-mono">v1.0.0</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1">
+
+      <!-- Hero Section -->
+      <section id="overview" class="pt-20 pb-16 px-4 sm:px-6 lg:px-8 text-center max-w-5xl mx-auto">
+        
+        <!-- Live OTA Pill & Creator Badge -->
+        <div class="flex flex-wrap items-center justify-center gap-3 mb-8">
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full liquid-glass border border-purple-400/30 text-xs font-semibold text-purple-200 shadow-sm">
+            <span class="w-2 h-2 rounded-full bg-fuchsia-400 animate-pulse"></span>
+            <span>In-App Background OTA Engine Active</span>
+            <span class="text-purple-400">•</span>
+            <span id="hero-version-text" class="text-white font-mono">v1.0.0</span>
+          </div>
+
+          <a href="#developer" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-glass border border-purple-400/20 text-xs font-medium text-purple-200/90 hover:text-white transition">
+            <span>Developed by Faraz Munawar</span>
+          </a>
+        </div>
+
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white leading-tight">
+          Liquid Glass Aesthetics. <br>
+          <span class="text-gradient-purple-white">
+            Next-Gen Android Media Engine.
+          </span>
+        </h1>
+
+        <p class="mt-6 text-base sm:text-lg text-purple-200/80 max-w-2xl mx-auto leading-relaxed">
+          Tactile liquid frosted glass textures, 10-band hardware equalizer with 300% loudness, real-time synchronized karaoke lyrics, 
+          hardware AES-256 encrypted media vault, and in-app updates with <strong>zero browser redirects</strong>.
+        </p>
+
+        <!-- CTA Action Buttons -->
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+          <button onclick="downloadApk()" class="flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-purple-600 via-fuchsia-500 to-purple-600 hover:from-purple-500 hover:to-fuchsia-400 text-white font-extrabold text-sm shadow-xl shadow-purple-600/35 transition-all hover:scale-105 cursor-pointer border border-purple-300/30">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            <span id="hero-btn-title">Download Lerza Player Pro</span>
+            <span id="hero-apk-size" class="text-xs px-2 py-0.5 rounded-lg bg-black/25 font-mono">19.8 MB</span>
+          </button>
+
+          <a href="#simulator" class="flex items-center gap-2 px-6 py-4 rounded-2xl liquid-glass hover:bg-white/10 text-white font-bold text-sm border border-purple-400/30 transition cursor-pointer">
+            <svg class="w-5 h-5 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+            <span>Try App Simulator</span>
+          </a>
+        </div>
+
+        <!-- Release Meta Details -->
+        <div class="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs text-purple-300/80">
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            Android 8.0+ Ready
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            Direct In-App Install
+          </span>
+          <span class="flex items-center gap-1.5">
+            <svg class="w-4 h-4 text-fuchsia-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+            AES-256 Vault
+          </span>
+        </div>
+      </section>
+
+      <!-- Interactive Phone Simulator Section -->
+      <section id="simulator" class="py-20 px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <!-- Left: Phone Simulator Frame -->
+          <div class="lg:col-span-6 flex justify-center">
+            <div class="relative w-[340px] sm:w-[380px] h-[720px] rounded-[52px] bg-[#0c051a] border-4 border-purple-500/40 shadow-2xl overflow-hidden flex flex-col glow-purple">
+              
+              <!-- Dynamic Island -->
+              <div class="absolute top-3 left-1/2 -translate-x-1/2 w-28 h-5 bg-black rounded-full z-30 flex items-center justify-end px-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-purple-400/80 animate-pulse"></div>
+              </div>
+
+              <!-- Content Header -->
+              <div class="pt-10 px-5 pb-3 flex items-center justify-between border-b border-purple-500/20 bg-[#160a33]/90 z-20">
+                <div class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-lg overflow-hidden bg-purple-950 p-0.5">
+                    <img id="sim-logo" src="logo-transparent.png" alt="App" class="w-full h-full object-contain">
+                  </div>
+                  <div>
+                    <h3 id="sim-app-name" class="text-xs font-bold text-white">Lerza Player Pro</h3>
+                    <p class="text-[9px] text-purple-300">v1.0.0 • Now Playing</p>
+                  </div>
+                </div>
+                <button onclick="triggerUpdatePopup()" class="px-2.5 py-1 rounded-lg bg-purple-500/20 text-purple-200 text-[10px] font-bold border border-purple-400/30 hover:bg-purple-500/30 transition">
+                  Check Update
+                </button>
+              </div>
+
+              <!-- Media Player Body -->
+              <div class="flex-1 p-5 flex flex-col justify-between relative overflow-y-auto">
+                
+                <!-- Album Artwork -->
+                <div class="w-full aspect-square rounded-3xl overflow-hidden relative shadow-2xl bg-gradient-to-tr from-purple-900 via-fuchsia-950 to-[#0e0622] p-[2px]">
+                  <div class="w-full h-full bg-[#160a33] rounded-[22px] flex flex-col items-center justify-center p-6 text-center">
+                    <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-purple-500 to-fuchsia-500 flex items-center justify-center mb-4 shadow-lg shadow-purple-500/40">
+                      <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"></path></svg>
+                    </div>
+                    <h4 class="text-sm font-bold text-white">Liquid Velvet Master</h4>
+                    <p class="text-[11px] text-purple-300/70 mt-1">High-Resolution Audio 96kHz</p>
+                  </div>
+                </div>
+
+                <!-- Track Info & Controls -->
+                <div class="space-y-4">
+                  <div>
+                    <div class="flex justify-between text-[11px] text-purple-300/70 font-mono">
+                      <span>02:14</span>
+                      <span>04:38</span>
+                    </div>
+                    <div class="w-full h-1.5 bg-purple-950 rounded-full mt-1.5 overflow-hidden">
+                      <div class="w-1/2 h-full bg-gradient-to-r from-purple-400 to-white rounded-full"></div>
+                    </div>
+                  </div>
+
+                  <div class="flex items-center justify-between px-2">
+                    <button class="text-purple-300/70 hover:text-white"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0019 16V8a1 1 0 00-1.6-.8l-5.334 4zM4.066 11.2a1 1 0 000 1.6l5.334 4A1 1 0 0011 16V8a1 1 0 00-1.6-.8l-5.334 4z"></path></svg></button>
+                    <button class="w-12 h-12 rounded-full bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white flex items-center justify-center font-bold shadow-lg shadow-purple-500/50"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg></button>
+                    <button class="text-purple-300/70 hover:text-white"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.933 12.8a1 1 0 000-1.6L6.6 7.2A1 1 0 005 8v8a1 1 0 001.6.8l5.333-4zM19.933 12.8a1 1 0 000-1.6l-5.333-4A1 1 0 0013 8v8a1 1 0 001.6.8l5.333-4z"></path></svg></button>
+                  </div>
+                </div>
+
+                <!-- In-App Update Simulation Dialog Overlay -->
+                <div id="phone-update-dialog" class="hidden absolute inset-0 bg-[#0c051a]/95 backdrop-blur-md p-6 flex flex-col justify-center z-40 transition-all">
+                  <div class="rounded-3xl bg-[#160a33] border border-purple-400/50 p-5 space-y-4 shadow-2xl glow-purple">
+                    <div class="flex items-center gap-3">
+                      <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-purple-500 to-fuchsia-500 text-white flex items-center justify-center shrink-0">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                      </div>
+                      <div>
+                        <h4 class="text-xs font-bold text-white">New Update Available!</h4>
+                        <p id="popup-version" class="text-[10px] text-purple-300 font-mono">v1.0.0 (Build 1)</p>
+                      </div>
+                    </div>
+
+                    <div class="text-[11px] text-purple-200/80 bg-[#0d051e] p-3 rounded-xl border border-purple-500/20 space-y-1">
+                      <p class="font-bold text-white text-[10px]">What's New:</p>
+                      <p>• In-App direct APK download without Chrome</p>
+                      <p>• 10-band hardware equalizer engine</p>
+                      <p>• AI karaoke lyrics & AES-256 Vault</p>
+                    </div>
+
+                    <!-- Progress Bar -->
+                    <div id="update-progress-container" class="hidden space-y-1.5">
+                      <div class="flex justify-between text-[10px] text-purple-300 font-mono">
+                        <span>Downloading APK...</span>
+                        <span id="update-percentage">45%</span>
+                      </div>
+                      <div class="w-full h-2 bg-purple-950 rounded-full overflow-hidden">
+                        <div id="update-bar" class="h-full bg-gradient-to-r from-purple-400 to-white transition-all duration-300" style="width: 45%;"></div>
+                      </div>
+                    </div>
+
+                    <!-- Install Ready State -->
+                    <div id="update-ready-box" class="hidden p-2 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-[10px] text-emerald-300 text-center font-bold">
+                      ✓ APK Downloaded! Android Package Installer Launched.
+                    </div>
+
+                    <div class="flex items-center gap-2 pt-1">
+                      <button id="btn-start-update" onclick="simulateInAppDownload()" class="flex-1 py-2.5 rounded-xl bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white font-bold text-xs hover:opacity-95 transition cursor-pointer">
+                        Update In-App Now
+                      </button>
+                      <button onclick="closeUpdatePopup()" class="px-3 py-2.5 rounded-xl bg-purple-950/60 text-purple-200 text-xs font-semibold hover:bg-purple-900 transition cursor-pointer">
+                        Later
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Architecture Details -->
+          <div class="lg:col-span-6 space-y-6">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full liquid-glass border border-purple-400/30 text-xs font-bold text-purple-300">
+              <span>🚀 Zero-Redirect Architecture</span>
+            </div>
+
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+              In-App Auto Update System <br>
+              <span class="text-gradient-purple-white">Seamless Background Installation</span>
+            </h2>
+
+            <p class="text-sm text-purple-200/80 leading-relaxed">
+              Traditional applications redirect users to external browsers or ad-loaded sites. 
+              Lerza Player Pro incorporates native <strong>FileProvider</strong> and <strong>PackageInstaller</strong> bindings, 
+              downloading the APK in the background and launching the installation prompt on the spot.
+            </p>
+
+            <div class="space-y-4 pt-2">
+              <div class="p-4 rounded-2xl liquid-glass-card border border-purple-400/20 flex items-start gap-3">
+                <div class="w-8 h-8 rounded-xl bg-purple-500/20 text-purple-300 flex items-center justify-center font-bold shrink-0 mt-0.5">1</div>
+                <div>
+                  <h4 class="text-xs font-bold text-white">GitHub Managed (update.json)</h4>
+                  <p class="text-[11px] text-purple-200/70 mt-0.5">All control stays in your repository. Commit a new version and users receive instant update notifications.</p>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-2xl liquid-glass-card border border-purple-400/20 flex items-start gap-3">
+                <div class="w-8 h-8 rounded-xl bg-fuchsia-500/20 text-fuchsia-300 flex items-center justify-center font-bold shrink-0 mt-0.5">2</div>
+                <div>
+                  <h4 class="text-xs font-bold text-white">Seamless Download & Install</h4>
+                  <p class="text-[11px] text-purple-200/70 mt-0.5">No unzipping or manual file hunting required. One tap launches Android's native installer.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-4">
+              <button onclick="triggerUpdatePopup()" class="px-6 py-3.5 rounded-2xl bg-gradient-to-r from-purple-600/30 to-fuchsia-600/30 hover:from-purple-600/50 hover:to-fuchsia-600/50 border border-purple-400/30 text-white text-xs font-bold transition flex items-center gap-2 cursor-pointer shadow-lg shadow-purple-500/20">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122"></path></svg>
+                <span>Test Update Popup in Simulator</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 10-Band Equalizer Section -->
+      <section id="equalizer" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass border border-purple-400/30 text-xs font-bold text-purple-300 mb-3">
+            <span>Hardware DSP Audio Engine</span>
+          </div>
+          <h2 class="text-3xl font-extrabold text-white">10-Band Studio Equalizer & 300% Boost</h2>
+          <p class="text-xs text-purple-200/70 mt-2">OpenSL ES hardware bindings with sub-bass resonance and distortion limiter</p>
+        </div>
+
+        <div class="rounded-3xl liquid-glass border-2 border-purple-400/30 p-8 shadow-2xl glow-purple space-y-6">
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-xs">
+            <div class="p-3 rounded-2xl bg-purple-950/60 border border-purple-400/30 text-center font-bold text-white">Lark Jazz</div>
+            <div class="p-3 rounded-2xl bg-purple-950/30 border border-purple-500/20 text-center text-purple-300">Bass Booster</div>
+            <div class="p-3 rounded-2xl bg-purple-950/30 border border-purple-500/20 text-center text-purple-300">Pop Vocal</div>
+            <div class="p-3 rounded-2xl bg-purple-950/30 border border-purple-500/20 text-center text-purple-300">Rock / Metal</div>
+          </div>
+          <div class="h-44 bg-[#090414] rounded-2xl border border-purple-500/20 flex items-end justify-between p-6">
+            <div class="w-4 bg-purple-500 rounded-t h-32"></div>
+            <div class="w-4 bg-purple-400 rounded-t h-28"></div>
+            <div class="w-4 bg-fuchsia-400 rounded-t h-20"></div>
+            <div class="w-4 bg-purple-500 rounded-t h-16"></div>
+            <div class="w-4 bg-purple-400 rounded-t h-14"></div>
+            <div class="w-4 bg-fuchsia-400 rounded-t h-18"></div>
+            <div class="w-4 bg-purple-500 rounded-t h-24"></div>
+            <div class="w-4 bg-purple-400 rounded-t h-28"></div>
+            <div class="w-4 bg-fuchsia-400 rounded-t h-34"></div>
+            <div class="w-4 bg-white rounded-t h-36"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Private Vault Section -->
+      <section id="vault" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass border border-purple-400/30 text-xs font-bold text-purple-300 mb-3">
+            <span>Military AES-256 CTR Storage</span>
+          </div>
+          <h2 class="text-3xl font-extrabold text-white">Private Media Vault (Hide Songs & Videos)</h2>
+          <p class="text-xs text-purple-200/70 mt-2">Keep personal recordings, WhatsApp voice notes, and private 4K videos invisible from Android gallery</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+          <div class="p-6 rounded-3xl liquid-glass-card border border-purple-400/20 space-y-2">
+            <h4 class="text-sm font-bold text-white">🎵 Hide Songs & Audio</h4>
+            <p class="text-xs text-purple-200/70">Secure unreleased demos and confidential tracks with PIN & Pattern lock.</p>
+          </div>
+          <div class="p-6 rounded-3xl liquid-glass-card border border-purple-400/20 space-y-2">
+            <h4 class="text-sm font-bold text-white">🎬 Hide 4K Private Videos</h4>
+            <p class="text-xs text-purple-200/70">Invisible in system photo galleries, directly playable inside the app.</p>
+          </div>
+          <div class="p-6 rounded-3xl liquid-glass-card border border-purple-400/20 space-y-2">
+            <h4 class="text-sm font-bold text-white">🛡️ Hardware Keystore</h4>
+            <p class="text-xs text-purple-200/70">Cryptographic keys never leave the phone's hardware Secure Enclave.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Liquid Glass Theme Engine -->
+      <section id="themes" class="py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div class="text-center mb-12">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full liquid-glass border border-purple-400/30 text-xs font-bold text-purple-300 mb-3">
+            <span>Theme Generator</span>
+          </div>
+          <h2 class="text-3xl font-extrabold text-white">Dynamic Liquid Glass Themes</h2>
+          <p class="text-xs text-purple-200/70 mt-2">Switch effortlessly between Liquid Purple, Pure White Frost, and AMOLED Black</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div class="p-5 rounded-3xl bg-purple-600/30 border border-purple-400/40 text-center space-y-1">
+            <p class="text-sm font-bold text-white">Liquid Purple Glass</p>
+            <span class="text-[10px] text-purple-300">Fluid violet & white highlights</span>
+          </div>
+          <div class="p-5 rounded-3xl bg-white text-slate-900 text-center space-y-1">
+            <p class="text-sm font-bold">Pure White Frost</p>
+            <span class="text-[10px] text-slate-600">Ceramic high-contrast clarity</span>
+          </div>
+          <div class="p-5 rounded-3xl bg-black border border-purple-500/40 text-center space-y-1">
+            <p class="text-sm font-bold text-purple-200">AMOLED Black</p>
+            <span class="text-[10px] text-purple-400">Zero battery consumption on OLED</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Developer Section -->
+      <section id="developer" class="py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
+        <div class="rounded-[36px] liquid-glass border-2 border-purple-400/30 p-8 sm:p-12 text-center space-y-4 glow-purple">
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full liquid-glass border border-purple-400/30 text-xs font-semibold text-purple-200 shadow-sm">
+            <span>Lead Architect & Creator</span>
+          </div>
+          <h2 class="text-3xl sm:text-5xl font-extrabold text-white">Developed by Faraz Munawar</h2>
+          <p class="text-sm text-purple-200/80 max-w-xl mx-auto leading-relaxed">
+            Engineered with a dedicated focus on high-fidelity lossless audio reproduction, 
+            hardware-accelerated Android architecture, and next-generation liquid glass aesthetics.
+          </p>
+          <div class="pt-4 flex items-center justify-center gap-2 text-xs font-mono text-purple-300">
+            <span>Lerza Player Pro Edition</span>
+            <span>•</span>
+            <span>All Rights Reserved</span>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-purple-500/20 py-12 bg-[#090414] text-center text-xs text-purple-300/60">
+      <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
+        <div class="flex items-center gap-2 text-white font-bold text-sm">
+          <img id="footer-logo" src="logo-transparent.png" alt="Logo" class="w-6 h-6 object-contain">
+          <span>Lerza Player Pro 1.0.0</span>
+        </div>
+        <p class="max-w-md text-purple-200/70 text-[11px]">
+          Liquid Glass Android Media Engine with In-App OTA Background Update Integration. Developed by Faraz Munawar.
+        </p>
+        <button onclick="downloadApk()" class="px-5 py-2 rounded-xl bg-gradient-to-r from-purple-500 to-fuchsia-500 text-white font-bold hover:opacity-95 transition cursor-pointer">
+          Download APK v1.0.0
+        </button>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Dynamic Logic -->
+  <script>
+    let releaseData = {
+      versionName: "1.0.0",
+      versionCode: 1,
+      releaseTitle: "Lerza Player Pro 1.0.0 (Official Release)",
+      apkUrl: "LerzaPlayer_v1.0.0.apk",
+      apkFileName: "LerzaPlayer_v1.0.0.apk",
+      apkSize: "19.8 MB"
+    };
+
+    function autoDetectUpdateMetadata() {
+      const searchPaths = ['update.json', 'update-check.json', 'public/update.json'];
+      function checkNext(idx) {
+        if (idx >= searchPaths.length) return;
+        fetch(searchPaths[idx])
+          .then(res => res.json())
+          .then(data => {
+            if (data && data.versionName) {
+              releaseData = Object.assign(releaseData, data);
+              applyDynamicData();
+            }
+          })
+          .catch(() => checkNext(idx + 1));
+      }
+      checkNext(0);
+    }
+
+    function applyDynamicData() {
+      const vText = 'v' + releaseData.versionName;
+      const vBadge = document.getElementById('nav-version-badge');
+      if (vBadge) vBadge.textContent = vText;
+      const heroV = document.getElementById('hero-version-text');
+      if (heroV) heroV.textContent = vText;
+      const heroSize = document.getElementById('hero-apk-size');
+      if (heroSize) heroSize.textContent = releaseData.apkSize || '19.8 MB';
+      const popVer = document.getElementById('popup-version');
+      if (popVer) popVer.textContent = `${vText} (Build ${releaseData.versionCode || 1})`;
+    }
+
+    function downloadApk() {
+      const targetApk = releaseData.apkUrl || releaseData.apkFileName || 'LerzaPlayer_v1.0.0.apk';
+      const a = document.createElement('a');
+      a.href = targetApk;
+      a.download = releaseData.apkFileName || 'LerzaPlayer_v1.0.0.apk';
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    }
+
+    function triggerUpdatePopup() {
+      document.getElementById('phone-update-dialog').classList.remove('hidden');
+      document.getElementById('update-progress-container').classList.add('hidden');
+      document.getElementById('update-ready-box').classList.add('hidden');
+      document.getElementById('btn-start-update').classList.remove('hidden');
+    }
+
+    function closeUpdatePopup() {
+      document.getElementById('phone-update-dialog').classList.add('hidden');
+    }
+
+    function simulateInAppDownload() {
+      document.getElementById('btn-start-update').classList.add('hidden');
+      document.getElementById('update-progress-container').classList.remove('hidden');
+      
+      let p = 0;
+      const interval = setInterval(() => {
+        p += Math.floor(Math.random() * 15) + 12;
+        if (p >= 100) {
+          p = 100;
+          clearInterval(interval);
+          document.getElementById('update-bar').style.width = '100%';
+          document.getElementById('update-percentage').textContent = '100%';
+          setTimeout(() => {
+            document.getElementById('update-ready-box').classList.remove('hidden');
+          }, 300);
+        } else {
+          document.getElementById('update-bar').style.width = p + '%';
+          document.getElementById('update-percentage').textContent = p + '%';
+        }
+      }, 250);
+    }
+
+    // Auto-detect image fallbacks
+    function setupImages() {
+      const defaultIcon = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 108 108'%3E%3Crect width='108' height='108' rx='24' fill='%23160a33'/%3E%3Cpolygon points='48,42 66,54 48,66' fill='%23c084fc'/%3E%3C/svg%3E";
+      ['nav-logo', 'sim-logo', 'footer-logo'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.onerror = () => { el.src = defaultIcon; el.onerror = null; };
+        }
+      });
+    }
+
+    setupImages();
+    autoDetectUpdateMetadata();
+  </script>
+</body>
+</html>
