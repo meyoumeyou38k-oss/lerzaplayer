@@ -198,7 +198,7 @@
           <button onclick="downloadApk()" class="flex items-center gap-3 px-8 py-4 rounded-2xl bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-600 hover:from-emerald-500 hover:to-teal-500 text-white font-black text-sm shadow-xl shadow-emerald-600/30 transition-all hover:scale-105 cursor-pointer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
             <span id="hero-btn-title">Download Lerza Player APK</span>
-            <span id="hero-apk-size" class="text-xs px-2.5 py-0.5 rounded-lg bg-black/20 font-mono">19.8 MB</span>
+            <span id="hero-apk-size" class="text-xs px-2.5 py-0.5 rounded-lg bg-black/20 font-mono">21.64 MB</span>
           </button>
 
           <a href="#simulator" class="flex items-center gap-2 px-7 py-4 rounded-2xl liquid-glass-white hover:bg-white text-slate-800 font-bold text-sm border border-slate-200 transition cursor-pointer shadow-sm">
@@ -714,7 +714,7 @@
       releaseTitle: "Lerza Player Pro 1.0.0 (Official Release)",
       apkUrl: "LerzaPlayer_v1.0.1-debug.apk",
       apkFileName: "LerzaPlayer_v1.0.1-debug.apk",
-      apkSize: "19.8 MB"
+      apkSize: "21.64 MB"
     };
 
     function autoDetectUpdateMetadata() {
@@ -741,7 +741,7 @@
       const heroV = document.getElementById('hero-version-text');
       if (heroV) heroV.textContent = vText + ' Stable';
       const heroSize = document.getElementById('hero-apk-size');
-      if (heroSize) heroSize.textContent = releaseData.apkSize || '19.8 MB';
+      if (heroSize) heroSize.textContent = releaseData.apkSize || '21.64 MB';
       const popVer = document.getElementById('popup-version');
       if (popVer) popVer.textContent = `${vText} (Build ${releaseData.versionCode || 1})`;
     }
