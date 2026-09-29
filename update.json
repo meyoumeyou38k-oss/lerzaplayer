@@ -1,0 +1,20 @@
+{
+  "versionName": "1.0.0",
+  "versionCode": 1,
+  "minVersionCode": 1,
+  "releaseTitle": "Lerza Player Pro 1.0.0 (Official Release)",
+  "releaseDate": "2026-09-28",
+  "apkUrl": "LerzaPlayer_v1.0.0.apk",
+  "apkFileName": "LerzaPlayer_v1.0.0.apk",
+  "apkSize": "19.8 MB",
+  "md5Checksum": "e7b39a48f219582d00192a831efcb802",
+  "isForceUpdate": false,
+  "changelog": [
+    "⚡ Seamless In-App APK Download & Direct Installation",
+    "🎵 10-Band Precision Equalizer with Lark Jazz & Volume Boost",
+    "🎤 AI-Powered Synced Karaoke Lyrics with English, Urdu & Hindi",
+    "🛡️ Private AES-256 Media Vault with Hardware Keystore protection",
+    "🎬 Picture-in-Picture (PiP) Floating Video Player",
+    "🌙 Refined Paper-Glass aesthetic"
+  ]
+}
