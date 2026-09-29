@@ -712,8 +712,8 @@
       versionName: "1.0.0",
       versionCode: 1,
       releaseTitle: "Lerza Player Pro 1.0.0 (Official Release)",
-      apkUrl: "LerzaPlayer_v1.0.0.apk",
-      apkFileName: "LerzaPlayer_v1.0.0.apk",
+      apkUrl: "LerzaPlayer_v1.0.1-debug.apk",
+      apkFileName: "LerzaPlayer_v1.0.1-debug.apk",
       apkSize: "19.8 MB"
     };
 
@@ -747,10 +747,10 @@
     }
 
     function downloadApk() {
-      const targetApk = releaseData.apkUrl || releaseData.apkFileName || 'LerzaPlayer_v1.0.0.apk';
+      const targetApk = releaseData.apkUrl || releaseData.apkFileName || 'LerzaPlayer_v1.0.1-debug.apk';
       const a = document.createElement('a');
       a.href = targetApk;
-      a.download = releaseData.apkFileName || 'LerzaPlayer_v1.0.0.apk';
+      a.download = releaseData.apkFileName || 'LerzaPlayer_v1.0.1-debug.apk';
       document.body.appendChild(a);
       a.click();
       a.remove();
