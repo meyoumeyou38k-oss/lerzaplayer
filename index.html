@@ -170,9 +170,9 @@
         <div class="flex flex-wrap items-center justify-center gap-2.5 mb-7">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full liquid-glass-white border border-emerald-300/60 text-xs font-bold text-emerald-800 shadow-xs">
             <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span>Official Version 1.0.0 Released</span>
+            <span>Official Version 1.0.5 Released</span>
             <span class="text-emerald-300">•</span>
-            <span id="hero-version-text" class="text-slate-900 font-mono">v1.0.0 Stable</span>
+            <span id="hero-version-text" class="text-slate-900 font-mono">v1.0.5 Stable</span>
           </div>
 
           <button onclick="openDeveloperModal()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full liquid-glass-white border border-slate-200 text-xs font-bold text-slate-700 hover:text-emerald-700 hover:border-emerald-300 transition cursor-pointer">
@@ -273,7 +273,7 @@
                       </div>
                       <div>
                         <h4 class="text-xs font-extrabold text-white">LerzaPlayer Pro</h4>
-                        <p class="text-[9.5px] text-emerald-400 font-mono">v1.0.0 • Audiophile Engine</p>
+                        <p class="text-[9.5px] text-emerald-400 font-mono">v1.0.5 • Audiophile Engine</p>
                       </div>
                     </div>
                     <button onclick="triggerUpdatePopup()" class="px-2.5 py-1 rounded-lg bg-emerald-500/15 text-emerald-400 text-[10px] font-bold border border-emerald-500/30 hover:bg-emerald-500/25 transition">
@@ -450,12 +450,12 @@
                       </div>
                       <div>
                         <h4 class="text-xs font-bold text-white">New Update Available!</h4>
-                        <p id="popup-version" class="text-[10px] text-emerald-400 font-mono">v1.0.0 (Official Build)</p>
+                        <p id="popup-version" class="text-[10px] text-emerald-400 font-mono">v1.0.5 (Official Build)</p>
                       </div>
                     </div>
 
                     <div class="text-[11px] text-slate-300 bg-slate-950 p-3 rounded-xl border border-slate-800 space-y-1">
-                      <p class="font-bold text-white text-[10px]">What's New in v1.0.0:</p>
+                      <p class="font-bold text-white text-[10px]">What's New in v1.0.5:</p>
                       <p>• Direct 10-Band Hardware Equalizer</p>
                       <p>• Photo Opacity & Song Size Sliders</p>
                       <p>• In-App direct OTA APK download without browser</p>
@@ -648,7 +648,7 @@
           <div class="pt-3 flex flex-wrap items-center justify-center gap-2 text-xs font-mono text-slate-500">
             <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200">Lerza Player Pro Edition</span>
             <span>•</span>
-            <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200">Version 1.0.0</span>
+            <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200">Version 1.0.5</span>
             <span>•</span>
             <span class="px-2.5 py-1 rounded-md bg-white border border-slate-200">All Rights Reserved</span>
           </div>
@@ -662,14 +662,14 @@
       <div class="max-w-7xl mx-auto px-4 flex flex-col items-center gap-4">
         <div class="flex items-center gap-2 text-slate-900 font-black text-base">
           <img id="footer-logo" src="logo-transparent.png" alt="Logo" class="w-6 h-6 object-contain">
-          <span>Lerza Player Pro • v1.0.0</span>
+          <span>Lerza Player Pro • v1.0.5</span>
         </div>
         <p class="max-w-md text-slate-600 text-[11.5px] leading-relaxed">
           White Liquid Glass Android Media Engine with In-App OTA Background Update Integration. <br>
           <strong>Developed by Faraz Munawar (ڈویلپر بائے فراز منور)</strong>.
         </p>
         <button onclick="downloadApk()" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 text-white font-bold hover:opacity-95 transition cursor-pointer shadow-md shadow-emerald-600/20">
-          Download Official APK (v1.0.0)
+          Download Official APK (v1.0.5)
         </button>
       </div>
     </footer>
@@ -709,11 +709,11 @@
   <!-- JavaScript Dynamic Logic & Simulator -->
   <script>
     let releaseData = {
-      versionName: "1.0.0",
-      versionCode: 1,
-      releaseTitle: "Lerza Player Pro 1.0.0 (Official Release)",
-      apkUrl: "LerzaPlayer_v1.0.1-debug.apk",
-      apkFileName: "LerzaPlayer_v1.0.1-debug.apk",
+      versionName: "1.0.5",
+      versionCode: 4,
+      releaseTitle: "Lerza Player Pro 1.0.5 (Official Release)",
+      apkUrl: "LerzaPlayer_v1.0.5-debug.apk",
+      apkFileName: "LerzaPlayer_v1.0.5.apk",
       apkSize: "21.64 MB"
     };
 
@@ -747,10 +747,10 @@
     }
 
     function downloadApk() {
-      const targetApk = releaseData.apkUrl || releaseData.apkFileName || 'LerzaPlayer_v1.0.1-debug.apk';
+      const targetApk = releaseData.apkUrl || releaseData.apkFileName || 'LerzaPlayer_v1.0.5-debug.apk';
       const a = document.createElement('a');
       a.href = targetApk;
-      a.download = releaseData.apkFileName || 'LerzaPlayer_v1.0.1-debug.apk';
+      a.download = releaseData.apkFileName || 'LerzaPlayer_v1.0.5-debug.apk';
       document.body.appendChild(a);
       a.click();
       a.remove();
