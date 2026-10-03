@@ -1,14 +1,14 @@
 {
-  "master_ads_enabled": false,
+  "master_ads_enabled": true,
   "admob_app_id": "ca-app-pub-7375534389683057~7020773641",
-  "app_open_ad_enabled": false,
+  "app_open_ad_enabled": true,
   "app_open_ad_unit_id": "ca-app-pub-7375534389683057/3906515984",
-  "songs_list_ad_enabled": false,
+  "songs_list_ad_enabled": true,
   "songs_list_ad_unit_id": "ca-app-pub-7375534389683057/8388686475",
-  "videos_list_ad_enabled": false,
+  "videos_list_ad_enabled": true,
   "videos_list_ad_unit_id": "ca-app-pub-7375534389683057/8388686475",
-  "settings_click_ad_enabled": false,
+  "settings_click_ad_enabled": ttue,
   "settings_click_ad_unit_id": "ca-app-pub-7375534389683057/1823278127",
-  "vault_reward_ad_enabled": false,
+  "vault_reward_ad_enabled": true,
   "vault_reward_ad_unit_id": "ca-app-pub-7375534389683057/7678240038"
 }
